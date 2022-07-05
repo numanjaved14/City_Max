@@ -45,6 +45,9 @@ dependencies:
   time_picker_sheet: ^0.0.2+1
   date_time_picker: ^2.1.0
   flutter_rating_bar: ^4.0.1
+  firebase_core: ^1.19.1
+  cloud_firestore: ^3.2.1
+  firebase_auth: ^3.4.1
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +70,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  
 
   # To add assets to your application, add an assets section, like this:
   assets:
