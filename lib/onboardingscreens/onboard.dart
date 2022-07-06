@@ -1,12 +1,11 @@
 
-import 'package:city_max/main/mainscreen.dart';
 import 'package:city_max/onboardingscreens/onboardingone.dart';
 import 'package:city_max/onboardingscreens/onboardingthree.dart';
 import 'package:city_max/onboardingscreens/onboardingtwo.dart';
+import 'package:city_max/phoneAuthentication/phoneauth.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 
-import '../authphone/continuephone.dart';
 
 class OnBoardingScreens extends StatefulWidget {
   @override
@@ -72,7 +71,7 @@ class _OnBoardingScreensState extends State<OnBoardingScreens> {
         Container(
           margin: EdgeInsets.only(bottom: 20),
           child: ElevatedButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (builder) => ContinuePhone()));
+            Navigator.push(context, MaterialPageRoute(builder: (builder) => PhoneAuth()));
           }, child: Text('Next'),
           style: ElevatedButton.styleFrom(
             shape: StadiumBorder(),

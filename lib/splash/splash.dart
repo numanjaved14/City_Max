@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:city_max/authphone/continuephone.dart';
 import 'package:city_max/onboardingscreens/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
