@@ -49,6 +49,10 @@ dependencies:
   form_field_validator: ^1.1.0
   pinput: ^2.2.11
   country_code_picker: ^2.0.2
+  image_picker: ^0.8.5+3
+  firebase_storage: ^10.3.1
+  uuid: ^3.0.6
+  dob_input_field: ^1.0.0
 
 
 dev_dependencies:

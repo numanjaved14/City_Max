@@ -1,3 +1,4 @@
+import 'package:city_max/main/mainscreen.dart';
 import 'package:city_max/phoneAuthentication/ot.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
@@ -28,12 +29,17 @@ class _PhoneAuthState extends State<PhoneAuth> {
           children: [
                                 Image.asset(
                         'assets/splash.png',
-                        height: 200,
+                        height: 100,
+                        width: 200,
                       ),
+                      SizedBox(height: 40,),
            Container(
                         decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.blueAccent
+                          ),
                           borderRadius: BorderRadius.circular(20),
-                          color: Colors.white
+                          color: Colors.white70
                         ),
                         margin: EdgeInsets.only(left: 20, right: 20, top: 10),
                         child: Row(
@@ -65,14 +71,32 @@ class _PhoneAuthState extends State<PhoneAuth> {
                           ],
                         ),
                       ),
+                      SizedBox(height: 40,),
             ElevatedButton(onPressed: (){
              if(formKey.currentState!.validate()){
                Navigator.push(context, MaterialPageRoute(builder: (builder) =>Ot(
                 phone:_controller.text,
                 codeDigits: dialCodeDigits
               )));
+
              }
-            }, child: Text('Next'))
+            }, child: Text('Next'),
+            style: ElevatedButton.styleFrom(
+              shape: StadiumBorder(),
+              shadowColor: Colors.black,
+              fixedSize: Size(300, 60)
+            ),
+            
+            ),
+
+            SizedBox(height: 30,),
+            Text('OR'),
+
+                        SizedBox(height: 30,),
+                        TextButton(onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (builder) => MainScreen()));
+                        }, child: Text("Let's Explore App without signing",style: TextStyle(color: Colors.blue),))
+
           ],
         ),
       ),

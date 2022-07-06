@@ -60,18 +60,22 @@ class _OtState extends State<Ot> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-                  margin: EdgeInsets.only(top: 20, bottom: 20),
-                  child: Text(
-                    'Please enter the 6-digit code \n  sent to your number',
-                    style: TextStyle(color: Colors.black)),),
-            Container(
+                        Image.asset(
+                        'assets/splash.png',
+                        height: 100,
+                        width: 200,
+                      ),
+                      SizedBox(height: 30,),
+                       Container(
               child: InkWell(
                 child:
                     Text("verification: ${widget.codeDigits}-${widget.phone}"),
               ),
             ),
+                                          SizedBox(height: 30,),
+
             Container(
+              margin: EdgeInsets.only(left: 20,right: 20,bottom: 20,top: 20),
               child: Pinput(
                 length: 6,
               
@@ -94,7 +98,15 @@ class _OtState extends State<Ot> {
                  }
                 },
               ),
-            )
+            ),
+            
+            Container(
+                  margin: EdgeInsets.only(top: 20, bottom: 20),
+                  child: Text(
+                    'Please enter the 6-digit code \n  sent to your number',
+                    style: TextStyle(color: Colors.black),textAlign: TextAlign.center,),),
+                    SizedBox(height: 30,),
+           
           ],
         ),
       ),
@@ -106,7 +118,7 @@ class _OtState extends State<Ot> {
      await FirebaseAuth.instance.signInWithCredential(credential).then((value)  {
         if(value.user != null){
         
-                       Navigator.of(context).push(MaterialPageRoute(builder: (builder) => ProfileDetails()));
+                       Navigator.of(context).push(MaterialPageRoute(builder: (builder) => ProfileDetail()));
                      }else{
                       
                      }
