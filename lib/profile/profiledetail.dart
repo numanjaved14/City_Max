@@ -1,6 +1,10 @@
 import 'dart:io';
+import 'dart:typed_data';
+import 'package:city_max/firebasedb/firebasedb.dart';
 import 'package:city_max/main/mainscreen.dart';
+import 'package:city_max/utils/utils.dart';
 import 'package:date_time_picker/date_time_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,6 +20,8 @@ class _ProfileDetailState extends State<ProfileDetail> {
   var gender = ['Male', 'Female', 'Others'];
 
   String dropdownvalue = 'Male';
+  
+  var timestamp;
 
 //Text Field Title
   _titleText(String s) {
@@ -33,7 +39,6 @@ class _ProfileDetailState extends State<ProfileDetail> {
     );
   }
 
-//TextFieldws
 
 //TextFieldws
   Widget _textFormFieldFunctionIcon(
@@ -71,7 +76,24 @@ class _ProfileDetailState extends State<ProfileDetail> {
   }
 
   TextEditingController nameController = TextEditingController();
-  TextEditingController DateController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController dobController = TextEditingController();
+    Uint8List ? _image;
+
+
+ //Looding Variable
+  bool _isLoading = false;
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    emailController.clear();
+    nameController.clear();
+    phoneController.clear();
+    dobController.clear();
+  }
+
 
   final ImagePicker _picker = ImagePicker();
   File? imageUrl;
@@ -87,112 +109,153 @@ class _ProfileDetailState extends State<ProfileDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                  margin: EdgeInsets.only(top: 30),
+                  child: Center(
+                      child: Text(
+                    'Profile Details',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 36),
+                  ))),
+              Center(
+                child: Stack(
+                    children: [
+                      _image != null
+                          ? CircleAvatar(
+                              radius: 59, backgroundImage: MemoryImage(_image!))
+                          : Image.asset(
+                                  'assets/profile.png',height: 100,width: 200,),
+                            
+                      Positioned(
+                          bottom: -10,
+                          left: 70,
+                          child: IconButton(
+                              onPressed: () => selectImage(),
+                              icon: Icon(
+                                Icons.add_a_photo,
+                                color: Colors.white,
+                              )))
+                    ],
+                  ),
+              ),
+              _titleText('Full Name'),
+              _textFormFieldFunctionIcon(
+                  nameController, (p0) => null, "Mathawe Wilson"),
+                   _titleText('Email'),
+              _textFormFieldFunctionIcon(
+                  emailController, (p0) => null, "Email"),
+              _titleText('Date of Birth'),
+              Container(
+                padding: EdgeInsets.only(left: 5),
+                margin: EdgeInsets.only(left: 20,right: 20,top: 10),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black, width: 1)),
+                child: DateTimePicker(
+                  controller: dobController,
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2100),
+                  dateLabelText: 'Date',
+                  onChanged: (val) => print(val),
+                  validator: (val) {
+                    print(val);
+                    return null;
+                  },
+                  onSaved: (val) => print(val),
+                ),
+              ),
+              _titleText('Gender'),
+              Container(
+                decoration:
+                    BoxDecoration(border: Border.all(color: Colors.black)),
+                margin: EdgeInsets.only(left: 20, right: 20),
+                child: Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: DropdownButtonFormField<String>(
+                    isExpanded: true,
+                    value: dropdownvalue,
+                    items: gender.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        value = dropdownvalue;
+                      });
+                    },
+                  ),
+                ),
+              ),
+      
+                _titleText('Phone Number'),
+              _textFormFieldFunctionIcon(
+                  phoneController, (p0) => null, "Phone Number"),
+              Container(
                 margin: EdgeInsets.only(top: 30),
                 child: Center(
-                    child: Text(
-                  'Profile Details',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 36),
-                ))),
-            InkWell(
-              onTap: getImage,
-              child: Container(
-                margin: EdgeInsets.only(top: 10),
-                child: Center(
-                  child: imageUrl == null
-                      ? Image.asset(
-                          'assets/profile.png',
-                          height: 150,
-                        )
-                      : Image.file(
-                          imageUrl!,
-                          height: 100,
-                          width: 100,
-                          fit: BoxFit.fill,
-                        ),
-                ),
-              ),
-            ),
-            _titleText('Full Name'),
-            _textFormFieldFunctionIcon(
-                nameController, (p0) => null, "Mathawe Wilson"),
-            _titleText('Date of Birth'),
-            Container(
-              padding: EdgeInsets.only(left: 5),
-              margin: EdgeInsets.only(left: 20,right: 20,top: 10),
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black, width: 1)),
-              child: DateTimePicker(
-                controller: DateController,
-                firstDate: DateTime(1900),
-                lastDate: DateTime(2100),
-                dateLabelText: 'Date',
-                onChanged: (val) => print(val),
-                validator: (val) {
-                  print(val);
-                  return null;
-                },
-                onSaved: (val) => print(val),
-              ),
-            ),
-            _titleText('Gender'),
-            Container(
-              decoration:
-                  BoxDecoration(border: Border.all(color: Colors.black)),
-              margin: EdgeInsets.only(left: 20, right: 20),
-              child: Padding(
-                padding: const EdgeInsets.all(3.0),
-                child: DropdownButtonFormField<String>(
-                  isExpanded: true,
-                  value: dropdownvalue,
-                  items: gender.map((String items) {
-                    return DropdownMenuItem(
-                      value: items,
-                      child: Text(items),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      value = dropdownvalue;
-                    });
-                  },
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 30),
-              child: Center(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shadowColor: Colors.blueAccent,
-                    primary: Colors.blue,
-                    fixedSize: Size(300, 55),
-                  ),
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (builder) => MainScreen()));
-                  },
-                  child: Text(
-                    'Next ',
-                    style: GoogleFonts.getFont('Roboto',
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white,
-                        letterSpacing: 1.5,
-                        fontSize: 15,
-                        fontStyle: FontStyle.normal),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shadowColor: Colors.blueAccent,
+                      primary: Colors.blue,
+                      fixedSize: Size(300, 55),
+                    ),
+                    onPressed: profile,
+                    child: _isLoading ? CircularProgressIndicator() : Text(
+                      'Next ',
+                      style: GoogleFonts.getFont('Roboto',
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                          letterSpacing: 1.5,
+                          fontSize: 15,
+                          fontStyle: FontStyle.normal),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
+  
+ /// Select Image From Gallery
+  selectImage() async {
+    Uint8List ui = await pickImage(ImageSource.gallery);
+    setState(() {
+      _image = ui;
+    });
+  }
+
+   ///ProfileDetails
+  profile() async {
+    setState(() {
+      _isLoading = true;
+    });
+    String rse = await DatabaseMethods().profileDetail(
+        email: emailController.text,
+        fullName: nameController.text,
+        dob: dobController.text,
+        phoneNumber: phoneController.text,
+        file: _image!, gender: dropdownvalue, uid: FirebaseAuth.instance.currentUser!.uid);
+
+    print(rse);
+    setState(() {
+      _isLoading = false;
+    });
+    if (rse != 'sucess') {
+      showSnakBar(rse, context);
+    } else {
+      Navigator.push(context, MaterialPageRoute(builder: (builder) => MainScreen()));
+    }
+  
+}
 }
