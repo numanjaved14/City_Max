@@ -4,8 +4,6 @@ import 'package:city_max/pages/deepcleaning.dart';
 import 'package:city_max/pages/longlasting_distinction.dart';
 import 'package:city_max/pages/residentialarea.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class CleaningStuff extends StatefulWidget {
   const CleaningStuff({Key? key}) : super(key: key);
@@ -18,17 +16,20 @@ class _CleaningStuffState extends State<CleaningStuff> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: 1,
+      initialIndex: 0,
       length: 5,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Cleaning Services '),
-          bottom:  TabBar(
+          bottom: TabBar(
             isScrollable: true,
-              labelStyle: TextStyle(fontSize: 12.0),  //For Selected tab
+            labelStyle: TextStyle(fontSize: 12.0), //For Selected tab
             tabs: <Widget>[
               Tab(
                 text: "Cleaning",
+              ),
+              Tab(
+                text: "Deep Cleaning",
               ),
               Tab(
                 text: "Long-lasting Distinction",
@@ -36,22 +37,19 @@ class _CleaningStuffState extends State<CleaningStuff> {
               Tab(
                 text: "Resdential Area",
               ),
-               Tab(
+              Tab(
                 text: "Commercial Disinfection",
-              ),
-               Tab(
-                text: "Deep Cleaning",
               ),
             ],
           ),
         ),
-        body:  TabBarView(
-          children: <Widget>[ 
+        body: TabBarView(
+          children: <Widget>[
             CleaningServices(),
+            DeepCleaning(),
             LongLastingDistinction(),
             ResidentialArea(),
             CommercialDisinfection(),
-            DeepCleaning()
           ],
         ),
       ),

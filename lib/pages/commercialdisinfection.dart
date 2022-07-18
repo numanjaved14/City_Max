@@ -6,6 +6,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import '../detail/servicedetail.dart';
+import '../screens/sofa_cleaning.dart';
 
 class CommercialDisinfection extends StatefulWidget {
   const CommercialDisinfection({Key? key}) : super(key: key);
@@ -37,8 +38,8 @@ class _CommercialDisinfectionState extends State<CommercialDisinfection> {
               Map<String, String> dataMap = new HashMap();
               for (int i = 0; i < snapshot.data!.docs.length; i++) {
                 debugPrint('...........' +
-                    snapshot.data!.docs[i].data()['serviceSubCategory']);
-                dataMap[snapshot.data!.docs[i].data()['serviceSubCategory']] =
+                    snapshot.data!.docs[i].data()['serviceCategory']);
+                dataMap[snapshot.data!.docs[i].data()['serviceCategory']] =
                     snapshot.data!.docs[i].data()['price'];
               }
               debugPrint(dataMap.toString());
@@ -88,10 +89,9 @@ class _CommercialDisinfectionState extends State<CommercialDisinfection> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (builder) =>
-                                                  ServiceDetail(
-                                                title: title,
-                                                subTitle: 'Small Space',
-                                                price: dataMap['Small Space']!,
+                                                  SofaCleaningScreen(
+                                                type: title,
+                                                category: 'Small Space',
                                               ),
                                             ),
                                           );
@@ -146,10 +146,9 @@ class _CommercialDisinfectionState extends State<CommercialDisinfection> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (builder) =>
-                                                  ServiceDetail(
-                                                title: title,
-                                                subTitle: 'Medium Space',
-                                                price: dataMap['Medium Space']!,
+                                                  SofaCleaningScreen(
+                                                type: title,
+                                                category: 'Medium Space',
                                               ),
                                             ),
                                           );
@@ -210,10 +209,9 @@ class _CommercialDisinfectionState extends State<CommercialDisinfection> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (builder) =>
-                                                  ServiceDetail(
-                                                title: title,
-                                                subTitle: 'Large Space',
-                                                price: dataMap['Large Space']!,
+                                                  SofaCleaningScreen(
+                                                type: title,
+                                                category: 'Large Space',
                                               ),
                                             ),
                                           );

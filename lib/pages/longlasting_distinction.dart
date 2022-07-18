@@ -6,6 +6,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import '../detail/servicedetail.dart';
+import '../screens/sofa_cleaning.dart';
 
 class LongLastingDistinction extends StatefulWidget {
   const LongLastingDistinction({Key? key}) : super(key: key);
@@ -37,8 +38,8 @@ class _LongLastingDistinctionState extends State<LongLastingDistinction> {
               Map<String, String> dataMap = new HashMap();
               for (int i = 0; i < snapshot.data!.docs.length; i++) {
                 debugPrint('...........' +
-                    snapshot.data!.docs[i].data()['serviceSubCategory']);
-                dataMap[snapshot.data!.docs[i].data()['serviceSubCategory']] =
+                    snapshot.data!.docs[i].data()['serviceCategory']);
+                dataMap[snapshot.data!.docs[i].data()['serviceCategory']] =
                     snapshot.data!.docs[i].data()['price'];
               }
               debugPrint(dataMap.toString());
@@ -88,12 +89,10 @@ class _LongLastingDistinctionState extends State<LongLastingDistinction> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (builder) =>
-                                                  ServiceDetail(
-                                                title: title,
-                                                subTitle:
+                                                  SofaCleaningScreen(
+                                                type: title,
+                                                category:
                                                     'Residential Appartments',
-                                                price: dataMap[
-                                                    'Residential Appartments']!,
                                               ),
                                             ),
                                           );
@@ -148,11 +147,9 @@ class _LongLastingDistinctionState extends State<LongLastingDistinction> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (builder) =>
-                                                  ServiceDetail(
-                                                title: title,
-                                                subTitle: 'Residential Villa',
-                                                price: dataMap[
-                                                    'Residential Villa']!,
+                                                  SofaCleaningScreen(
+                                                type: title,
+                                                category: 'Residential Villa',
                                               ),
                                             ),
                                           );
@@ -213,10 +210,9 @@ class _LongLastingDistinctionState extends State<LongLastingDistinction> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (builder) =>
-                                                  ServiceDetail(
-                                                title: title,
-                                                subTitle: 'Commercial',
-                                                price: dataMap['Commercial']!,
+                                                  SofaCleaningScreen(
+                                                type: title,
+                                                category: 'Commercial',
                                               ),
                                             ),
                                           );

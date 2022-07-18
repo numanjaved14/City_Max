@@ -1,10 +1,10 @@
 import 'package:city_max/paymentdetails/confrimpayment.dart';
 import 'package:flutter/material.dart';
-import 'package:calender_picker/calender_picker.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 
 class NextDetailPage extends StatefulWidget {
   String title, subTitle, serviceHours, heros, desc, loc, price;
+  var snap;
 
   NextDetailPage({
     Key? key,
@@ -15,6 +15,7 @@ class NextDetailPage extends StatefulWidget {
     required this.desc,
     required this.loc,
     required this.price,
+    this.snap,
   }) : super(key: key);
 
   @override
@@ -23,9 +24,17 @@ class NextDetailPage extends StatefulWidget {
 
 class _NextDetailPageState extends State<NextDetailPage> {
   TextEditingController _dateController = TextEditingController();
+  TextEditingController _timeController = TextEditingController();
   String _valueChanged4 = '';
   String _valueToValidate4 = '';
   String _valueSaved4 = '';
+
+  @override
+  void initState() {
+    debugPrint(widget.snap.toString());
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,23 +92,30 @@ class _NextDetailPageState extends State<NextDetailPage> {
                   title: Text('Select Time'),
                   subtitle: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: DateTimePicker(
-                      type: DateTimePickerType.time,
-                      //timePickerEntryModeInput: true,
-                      //controller: _controller4,
-                      initialValue: '', //_initialValue,
-                      icon: Icon(Icons.access_time),
-                      timeLabelText: "Time",
-                      use24HourFormat: false,
-                      locale: Locale('pt', 'BR'),
-                      onChanged: (val) => setState(() => _valueChanged4 = val),
-                      validator: (val) {
-                        setState(() => _valueToValidate4 = val ?? '');
-                        return null;
-                      },
-                      onSaved: (val) =>
-                          setState(() => _valueSaved4 = val ?? ''),
+                    child: TextField(
+                      controller: _timeController,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Time',
+                      ),
                     ),
+                    // child: DateTimePicker(
+                    //   type: DateTimePickerType.time,
+                    //   //timePickerEntryModeInput: true,
+                    //   //controller: _controller4,
+                    //   initialValue: '', //_initialValue,
+                    //   icon: Icon(Icons.access_time),
+                    //   timeLabelText: "Time",
+                    //   use24HourFormat: false,
+                    //   locale: Locale('pt', 'BR'),
+                    //   onChanged: (val) => setState(() => _valueChanged4 = val),
+                    //   validator: (val) {
+                    //     setState(() => _valueToValidate4 = val ?? '');
+                    //     return null;
+                    //   },
+                    //   onSaved: (val) =>
+                    //       setState(() => _valueSaved4 = val ?? ''),
+                    // ),
                   ),
                 ),
               ),
@@ -119,10 +135,12 @@ class _NextDetailPageState extends State<NextDetailPage> {
                         heros: widget.heros,
                         loc: widget.loc,
                         serviceHours: widget.serviceHours,
-                        time: _valueSaved4,
+                        // time: _valueSaved4,
+                        time: _timeController.text,
                         title: widget.title,
                         subTitle: widget.subTitle,
                         price: widget.price,
+                        snap: widget.snap,
                       ),
                     ),
                   );

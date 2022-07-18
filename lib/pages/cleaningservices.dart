@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:city_max/detail/servicedetail.dart';
+import 'package:city_max/screens/sofa_cleaning.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -35,8 +36,8 @@ class _CleaningServicesState extends State<CleaningServices> {
               Map<String, String> dataMap = new HashMap();
               for (int i = 0; i < snapshot.data!.docs.length; i++) {
                 debugPrint('...........' +
-                    snapshot.data!.docs[i].data()['serviceSubCategory']);
-                dataMap[snapshot.data!.docs[i].data()['serviceSubCategory']] =
+                    snapshot.data!.docs[i].data()['serviceCategory']);
+                dataMap[snapshot.data!.docs[i].data()['serviceCategory']] =
                     snapshot.data!.docs[i].data()['price'];
               }
               debugPrint(dataMap.toString());
@@ -74,7 +75,7 @@ class _CleaningServicesState extends State<CleaningServices> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Hourly Price:\n${dataMap['HouseKeeping with Materials']} AED',
+                                      'Hourly Price:\n${dataMap['HouseKeeping with Materials'].toString()} AED',
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
                                           color: Colors.black,
@@ -134,7 +135,7 @@ class _CleaningServicesState extends State<CleaningServices> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Hourly Price:\n${dataMap['HouseKeeping without Materials']} AED',
+                                      'Hourly Price:\n${dataMap['HouseKeeping without Materials'].toString()} AED',
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
                                           color: Colors.black,
@@ -200,7 +201,7 @@ class _CleaningServicesState extends State<CleaningServices> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Fixed Price:\n${dataMap['Sofas']} AED Per Seat',
+                                      'Fixed Price:\n${dataMap['Sofas'].toString()} AED',
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
                                           color: Colors.black,
@@ -212,10 +213,9 @@ class _CleaningServicesState extends State<CleaningServices> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (builder) =>
-                                                  ServiceDetail(
-                                                title: title,
-                                                subTitle: 'Sofas',
-                                                price: dataMap['Sofas']!,
+                                                  SofaCleaningScreen(
+                                                type: title,
+                                                category: 'Sofas',
                                               ),
                                             ),
                                           );
@@ -258,7 +258,7 @@ class _CleaningServicesState extends State<CleaningServices> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Fixed Price:\n${dataMap['Carpets']} AED per Hour',
+                                      'Fixed Price:\n${dataMap['Carpets'].toString()} AED per Hour',
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
                                           color: Colors.black,
@@ -270,10 +270,9 @@ class _CleaningServicesState extends State<CleaningServices> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (builder) =>
-                                                  ServiceDetail(
-                                                title: title,
-                                                subTitle: 'Carpets',
-                                                price: dataMap['Carpets']!,
+                                                  SofaCleaningScreen(
+                                                type: title,
+                                                category: 'Carpets',
                                               ),
                                             ),
                                           );
@@ -322,7 +321,7 @@ class _CleaningServicesState extends State<CleaningServices> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Fixed Price:\n${dataMap['Curtains Shampooing']} AED',
+                                      'Fixed Price:\n${dataMap['Curtains Shampooing'].toString()} AED',
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
                                           color: Colors.black,
@@ -334,11 +333,9 @@ class _CleaningServicesState extends State<CleaningServices> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (builder) =>
-                                                  ServiceDetail(
-                                                title: title,
-                                                price: dataMap[
-                                                    'Curtains Shampooing']!,
-                                                subTitle: 'Curtains Shampooing',
+                                                  SofaCleaningScreen(
+                                                type: title,
+                                                category: 'Curtains Shampooing',
                                               ),
                                             ),
                                           );
@@ -381,7 +378,7 @@ class _CleaningServicesState extends State<CleaningServices> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Fixed Price:\n${dataMap['Mattress Shampooing']}AED',
+                                      'Fixed Price:\n${dataMap['Mattress Shampooing'].toString()}AED',
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
                                           color: Colors.black,
@@ -393,11 +390,9 @@ class _CleaningServicesState extends State<CleaningServices> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (builder) =>
-                                                  ServiceDetail(
-                                                title: title,
-                                                price: dataMap[
-                                                    'Mattress Shampooing']!,
-                                                subTitle: 'Mattress Shampooing',
+                                                  SofaCleaningScreen(
+                                                type: title,
+                                                category: 'Mattress Shampooing',
                                               ),
                                             ),
                                           );

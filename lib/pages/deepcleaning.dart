@@ -6,6 +6,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import '../detail/servicedetail.dart';
+import '../screens/sofa_cleaning.dart';
 
 class DeepCleaning extends StatefulWidget {
   const DeepCleaning({Key? key}) : super(key: key);
@@ -37,8 +38,8 @@ class _DeepCleaningState extends State<DeepCleaning> {
               Map<String, String> dataMap = new HashMap();
               for (int i = 0; i < snapshot.data!.docs.length; i++) {
                 debugPrint('...........' +
-                    snapshot.data!.docs[i].data()['serviceSubCategory']);
-                dataMap[snapshot.data!.docs[i].data()['serviceSubCategory']] =
+                    snapshot.data!.docs[i].data()['serviceCategory']);
+                dataMap[snapshot.data!.docs[i].data()['serviceCategory']] =
                     snapshot.data!.docs[i].data()['price'];
               }
               debugPrint(dataMap.toString());
@@ -88,10 +89,9 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (builder) =>
-                                                  ServiceDetail(
-                                                title: title,
-                                                subTitle: 'Appartment',
-                                                price: dataMap['Appartments']!,
+                                                  SofaCleaningScreen(
+                                                type: title,
+                                                category: 'Appartments',
                                               ),
                                             ),
                                           );
@@ -146,10 +146,9 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (builder) =>
-                                                  ServiceDetail(
-                                                title: title,
-                                                subTitle: 'Villa',
-                                                price: dataMap['Villas']!,
+                                                  SofaCleaningScreen(
+                                                type: title,
+                                                category: 'Villas',
                                               ),
                                             ),
                                           );
@@ -210,10 +209,9 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (builder) =>
-                                                  ServiceDetail(
-                                                title: title,
-                                                subTitle: 'Kitchen',
-                                                price: dataMap['Kitchen']!,
+                                                  SofaCleaningScreen(
+                                                type: title,
+                                                category: 'Kitchen',
                                               ),
                                             ),
                                           );
@@ -268,10 +266,9 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (builder) =>
-                                                  ServiceDetail(
-                                                title: title,
-                                                subTitle: 'Bathroom',
-                                                price: dataMap['Bathroom']!,
+                                                  SofaCleaningScreen(
+                                                type: title,
+                                                category: 'Bathroom',
                                               ),
                                             ),
                                           );

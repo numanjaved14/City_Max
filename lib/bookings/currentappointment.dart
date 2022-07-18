@@ -2,8 +2,6 @@ import 'package:city_max/bookings/apointments/currentappontmentdetails.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class CurrentAppointments extends StatefulWidget {
   const CurrentAppointments({Key? key}) : super(key: key);
@@ -76,8 +74,8 @@ class _CurrentAppointmentsState extends State<CurrentAppointments> {
                                           style: TextStyle(color: Colors.red),
                                         ),
                                       ),
-                                      title: Text(snap['title']),
-                                      subtitle: Text(snap['loc']),
+                                      title: Text(snap['serviceType']),
+                                      subtitle: Text(snap['serviceCatgory']),
                                     ),
                                     Divider()
                                   ],

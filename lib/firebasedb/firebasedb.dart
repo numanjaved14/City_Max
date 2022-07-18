@@ -45,8 +45,9 @@ class DatabaseMethods {
   }
 
   Future<String> addOrder({
-    required String title,
-    required String subTitle,
+    required String type,
+    required String category,
+    required String subCatgory,
     required String serviceHours,
     required String heros,
     required String desc,
@@ -58,11 +59,12 @@ class DatabaseMethods {
     String res = 'Some error occured';
     try {
       await firebaseFirestore.collection('orders').doc().set({
-        'title': title,
-        'subTitle': subTitle,
+        'serviceType': type,
+        'serviceCatgory': category,
+        'serviceSubCategory': subCatgory,
         'serviceHours': serviceHours,
         'heros': heros,
-        'desc': desc,
+        'userDescription': desc,
         'loc': loc,
         'date': date,
         'time': time,

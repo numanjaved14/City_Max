@@ -6,6 +6,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import '../detail/servicedetail.dart';
+import '../screens/sofa_cleaning.dart';
 
 class ResidentialArea extends StatefulWidget {
   const ResidentialArea({Key? key}) : super(key: key);
@@ -38,8 +39,8 @@ class _ResidentialAreaState extends State<ResidentialArea> {
               Map<String, String> dataMap = new HashMap();
               for (int i = 0; i < snapshot.data!.docs.length; i++) {
                 debugPrint('...........' +
-                    snapshot.data!.docs[i].data()['serviceSubCategory']);
-                dataMap[snapshot.data!.docs[i].data()['serviceSubCategory']] =
+                    snapshot.data!.docs[i].data()['serviceCategory']);
+                dataMap[snapshot.data!.docs[i].data()['serviceCategory']] =
                     snapshot.data!.docs[i].data()['price'];
               }
               debugPrint(dataMap.toString());
@@ -89,10 +90,9 @@ class _ResidentialAreaState extends State<ResidentialArea> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (builder) =>
-                                                  ServiceDetail(
-                                                title: title,
-                                                subTitle: 'Appartment',
-                                                price: dataMap['Appartments']!,
+                                                  SofaCleaningScreen(
+                                                type: title,
+                                                category: 'Appartments',
                                               ),
                                             ),
                                           );
@@ -147,10 +147,9 @@ class _ResidentialAreaState extends State<ResidentialArea> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (builder) =>
-                                                  ServiceDetail(
-                                                title: title,
-                                                subTitle: 'Villa',
-                                                price: dataMap['Villas']!,
+                                                  SofaCleaningScreen(
+                                                type: title,
+                                                category: 'Villas',
                                               ),
                                             ),
                                           );
