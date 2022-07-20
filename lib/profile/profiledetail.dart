@@ -20,7 +20,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
   var gender = ['Male', 'Female', 'Others'];
 
   String dropdownvalue = 'Male';
-  
+
   var timestamp;
 
 //Text Field Title
@@ -38,7 +38,6 @@ class _ProfileDetailState extends State<ProfileDetail> {
       ),
     );
   }
-
 
 //TextFieldws
   Widget _textFormFieldFunctionIcon(
@@ -79,10 +78,9 @@ class _ProfileDetailState extends State<ProfileDetail> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController dobController = TextEditingController();
-    Uint8List ? _image;
+  Uint8List? _image;
 
-
- //Looding Variable
+  //Looding Variable
   bool _isLoading = false;
   @override
   void dispose() {
@@ -93,7 +91,6 @@ class _ProfileDetailState extends State<ProfileDetail> {
     phoneController.clear();
     dobController.clear();
   }
-
 
   final ImagePicker _picker = ImagePicker();
   File? imageUrl;
@@ -126,35 +123,37 @@ class _ProfileDetailState extends State<ProfileDetail> {
                   ))),
               Center(
                 child: Stack(
-                    children: [
-                      _image != null
-                          ? CircleAvatar(
-                              radius: 59, backgroundImage: MemoryImage(_image!))
-                          : Image.asset(
-                                  'assets/profile.png',height: 100,width: 200,),
-                            
-                      Positioned(
-                          bottom: -10,
-                          left: 70,
-                          child: IconButton(
-                              onPressed: () => selectImage(),
-                              icon: Icon(
-                                Icons.add_a_photo,
-                                color: Colors.white,
-                              )))
-                    ],
-                  ),
+                  children: [
+                    _image != null
+                        ? CircleAvatar(
+                            radius: 59, backgroundImage: MemoryImage(_image!))
+                        : Image.asset(
+                            'assets/profile.png',
+                            height: 100,
+                            width: 200,
+                          ),
+                    Positioned(
+                        bottom: -10,
+                        left: 70,
+                        child: IconButton(
+                            onPressed: () => selectImage(),
+                            icon: Icon(
+                              Icons.add_a_photo,
+                              color: Colors.white,
+                            )))
+                  ],
+                ),
               ),
               _titleText('Full Name'),
               _textFormFieldFunctionIcon(
                   nameController, (p0) => null, "Mathawe Wilson"),
-                   _titleText('Email'),
+              _titleText('Email'),
               _textFormFieldFunctionIcon(
                   emailController, (p0) => null, "Email"),
               _titleText('Date of Birth'),
               Container(
                 padding: EdgeInsets.only(left: 5),
-                margin: EdgeInsets.only(left: 20,right: 20,top: 10),
+                margin: EdgeInsets.only(left: 20, right: 20, top: 10),
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.black, width: 1)),
                 child: DateTimePicker(
@@ -194,8 +193,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                   ),
                 ),
               ),
-      
-                _titleText('Phone Number'),
+              _titleText('Phone Number'),
               _textFormFieldFunctionIcon(
                   phoneController, (p0) => null, "Phone Number"),
               Container(
@@ -208,15 +206,17 @@ class _ProfileDetailState extends State<ProfileDetail> {
                       fixedSize: Size(300, 55),
                     ),
                     onPressed: profile,
-                    child: _isLoading ? CircularProgressIndicator() : Text(
-                      'Next ',
-                      style: GoogleFonts.getFont('Roboto',
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
-                          letterSpacing: 1.5,
-                          fontSize: 15,
-                          fontStyle: FontStyle.normal),
-                    ),
+                    child: _isLoading
+                        ? CircularProgressIndicator()
+                        : Text(
+                            'Next ',
+                            style: GoogleFonts.getFont('Roboto',
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white,
+                                letterSpacing: 1.5,
+                                fontSize: 15,
+                                fontStyle: FontStyle.normal),
+                          ),
                   ),
                 ),
               ),
@@ -226,8 +226,8 @@ class _ProfileDetailState extends State<ProfileDetail> {
       ),
     );
   }
-  
- /// Select Image From Gallery
+
+  /// Select Image From Gallery
   selectImage() async {
     Uint8List ui = await pickImage(ImageSource.gallery);
     setState(() {
@@ -235,7 +235,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
     });
   }
 
-   ///ProfileDetails
+  ///ProfileDetails
   profile() async {
     setState(() {
       _isLoading = true;
@@ -245,17 +245,23 @@ class _ProfileDetailState extends State<ProfileDetail> {
         fullName: nameController.text,
         dob: dobController.text,
         phoneNumber: phoneController.text,
-        file: _image!, gender: dropdownvalue, uid: FirebaseAuth.instance.currentUser!.uid);
+        file: _image!,
+        gender: dropdownvalue,
+        uid: FirebaseAuth.instance.currentUser!.uid);
 
     print(rse);
     setState(() {
       _isLoading = false;
     });
-    if (rse != 'sucess') {
-      showSnakBar(rse, context);
+    if (rse == 'success') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (builder) => MainScreen(),
+        ),
+      );
     } else {
-      Navigator.push(context, MaterialPageRoute(builder: (builder) => MainScreen()));
+      showSnakBar(rse, context);
     }
-  
-}
+  }
 }

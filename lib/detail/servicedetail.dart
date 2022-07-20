@@ -18,14 +18,13 @@ class ServiceDetail extends StatefulWidget {
 }
 
 class _ServiceDetailState extends State<ServiceDetail> {
-  TextEditingController _hoursController = TextEditingController();
-  TextEditingController _herosController = TextEditingController();
+  int _heroCount = 0;
+  int _hourCounter = 0;
+
   TextEditingController _descController = TextEditingController();
   TextEditingController _addrController = TextEditingController();
   @override
   void dispose() {
-    _hoursController.dispose();
-    _herosController.dispose();
     _descController.dispose();
     super.dispose();
   }
@@ -61,11 +60,54 @@ class _ServiceDetailState extends State<ServiceDetail> {
               child: Card(
                 child: ListTile(
                   title: Text('How many hours of service you need'),
-                  subtitle: TextField(
-                    controller: _hoursController,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Service Hours',
+                  // subtitle: TextField(
+                  //   controller: _hoursController,
+                  //   decoration: InputDecoration(
+                  //     border: InputBorder.none,
+                  //     hintText: 'Service Hours',
+                  //   ),
+                  // ),
+                  subtitle: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 35.0, vertical: 10.0),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.04,
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blue, width: 1),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            // Text('Add Service'),
+                            IconButton(
+                                onPressed: () {
+                                  if (_hourCounter != 0) {
+                                    setState(() {
+                                      setState(() => _hourCounter--);
+                                    });
+                                  }
+                                },
+                                icon: Icon(
+                                  Icons.remove,
+                                  size: 10,
+                                )),
+                            Text(
+                              _hourCounter.toString(),
+                              style: TextStyle(fontSize: 10),
+                            ),
+                            IconButton(
+                                onPressed: () {
+                                  setState(() => _hourCounter++);
+                                },
+                                icon: Icon(
+                                  Icons.add,
+                                  size: 10,
+                                )),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -76,11 +118,47 @@ class _ServiceDetailState extends State<ServiceDetail> {
               child: Card(
                 child: ListTile(
                   title: Text('How many heros you need'),
-                  subtitle: TextField(
-                    controller: _herosController,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Heros',
+                  subtitle: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 35.0, vertical: 10.0),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.04,
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blue, width: 1),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            // Text('Add Service'),
+                            IconButton(
+                                onPressed: () {
+                                  if (_heroCount != 0) {
+                                    setState(() {
+                                      setState(() => _heroCount--);
+                                    });
+                                  }
+                                },
+                                icon: Icon(
+                                  Icons.remove,
+                                  size: 10,
+                                )),
+                            Text(
+                              _heroCount.toString(),
+                              style: TextStyle(fontSize: 10),
+                            ),
+                            IconButton(
+                                onPressed: () {
+                                  setState(() => _heroCount++);
+                                },
+                                icon: Icon(
+                                  Icons.add,
+                                  size: 10,
+                                )),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -180,9 +258,9 @@ class _ServiceDetailState extends State<ServiceDetail> {
                     MaterialPageRoute(
                       builder: (builder) => NextDetailPage(
                         desc: _descController.text,
-                        heros: _herosController.text,
+                        heros: _heroCount.toString(),
                         loc: _addrController.text,
-                        serviceHours: _hoursController.text,
+                        serviceHours: _heroCount.toString(),
                         subTitle: widget.subTitle == null
                             ? widget.snap['serviceCategory']
                             : widget.subTitle!,

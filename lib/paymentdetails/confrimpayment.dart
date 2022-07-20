@@ -36,7 +36,7 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
 
   @override
   void initState() {
-    debugPrint(widget.snap.toString());
+    debugPrint(widget.time);
     super.initState();
   }
 
@@ -188,20 +188,21 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
                     _isLoading = true;
                   });
                   if (FirebaseAuth.instance.currentUser != null) {
-                    String res = await DatabaseMethods().addOrder(
-                      type: widget.title,
-                      category: widget.subTitle,
-                      subCatgory: widget.snap['serviceSubCategory'] == null
-                          ? ''
-                          : widget.snap['serviceSubCategory'],
-                      serviceHours: widget.serviceHours,
-                      heros: widget.heros,
-                      desc: widget.desc,
-                      loc: widget.loc,
-                      date: widget.date,
-                      time: widget.time,
-                      price: widget.price,
-                    );
+                    // String res = await DatabaseMethods().addOrder(
+                    //   type: widget.title,
+                    //   category: widget.subTitle,
+                    //   subCatgory: widget.snap['serviceSubCategory'] == null
+                    //       ? ''
+                    //       : widget.snap['serviceSubCategory'],
+                    //   serviceHours: widget.serviceHours,
+                    //   heros: widget.heros,
+                    //   desc: widget.desc,
+                    //   loc: widget.loc,
+                    //   date: widget.date,
+                    //   time: widget.time,
+                    //   price: widget.price,
+                    // );
+                    String res = '';
                     if (res == 'success') {
                       setState(() {
                         _isLoading = false;

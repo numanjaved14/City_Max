@@ -1,6 +1,11 @@
+import 'package:city_max/screens/cart_screen.dart';
+import 'package:city_max/screens/widgets/badge.dart';
 import 'package:city_max/screens/widgets/sofa_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/cart.dart';
 
 class SofaCleaningScreen extends StatefulWidget {
   String type;
@@ -24,8 +29,29 @@ class _SofaCleaningScreenState extends State<SofaCleaningScreen> {
           widget.type,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
+        actions: [
+          Consumer<Cart>(
+            builder: (_, cart, ch) => Badge(
+              child: ch!,
+              value: cart.itemCount.toString(),
+            ),
+            child: IconButton(
+              icon: Icon(
+                Icons.shopping_cart,
+              ),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => CartScreen(),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
-      body: StreamBuilder(
+      body: SingleChildScrollView(
+        child: StreamBuilder(
           stream: FirebaseFirestore.instance
               .collection('Services')
               .where('servicetype', isEqualTo: widget.type)
@@ -44,15 +70,34 @@ class _SofaCleaningScreenState extends State<SofaCleaningScreen> {
                 child: CircularProgressIndicator(),
               );
             }
-
-            return ListView.builder(
-                itemCount: snapshot.data!.docs.length,
-                itemBuilder: (context, index) {
-                  return ListTileItem(
-                    snap: snapshot.data!.docs[index].data(),
-                  );
-                });
-          }),
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: snapshot.data!.docs.length > 0
+                      ? Text(
+                          '${snapshot.data!.docs[0].data()['description']}',
+                          style: TextStyle(color: Colors.black),
+                        )
+                      : Text(''),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.9,
+                  width: MediaQuery.of(context).size.width,
+                  child: ListView.builder(
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      return ListTileItem(
+                        snap: snapshot.data!.docs[index].data(),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ),
     );
   }
 }

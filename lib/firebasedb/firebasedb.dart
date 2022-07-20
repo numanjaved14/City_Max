@@ -5,6 +5,10 @@ import 'package:city_max/firebasedb/storage_methods.dart';
 import 'package:city_max/models/profile_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:uuid/uuid.dart';
+
+import '../providers/cart.dart';
 
 class DatabaseMethods {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
@@ -45,23 +49,23 @@ class DatabaseMethods {
   }
 
   Future<String> addOrder({
-    required String type,
-    required String category,
-    required String subCatgory,
+    required List<CartItem> products,
     required String serviceHours,
     required String heros,
     required String desc,
     required String loc,
     required String date,
     required String time,
-    required String price,
+    required double price,
+    required bool paid,
   }) async {
     String res = 'Some error occured';
+    debugPrint(res);
+
+    String uuid = Uuid().v1();
     try {
-      await firebaseFirestore.collection('orders').doc().set({
-        'serviceType': type,
-        'serviceCatgory': category,
-        'serviceSubCategory': subCatgory,
+      await firebaseFirestore.collection('orders').doc(uuid).set({
+        'products': products,
         'serviceHours': serviceHours,
         'heros': heros,
         'userDescription': desc,
@@ -71,10 +75,13 @@ class DatabaseMethods {
         'price': price,
         'status': 'pending',
         'uid': FirebaseAuth.instance.currentUser!.uid,
+        'uuid': uuid,
       });
       res = 'sucess';
-    } catch (e) {
+      debugPrint(res);
+    } on FirebaseException catch (e) {
       res = e.toString();
+      debugPrint(res);
     }
     return res;
   }
