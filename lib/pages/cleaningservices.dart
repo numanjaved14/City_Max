@@ -214,6 +214,8 @@ class _CleaningServicesState extends State<CleaningServices> {
                                             MaterialPageRoute(
                                               builder: (builder) =>
                                                   SofaCleaningScreen(
+                                                imagePath:
+                                                    'assets/Sofas Cleaning.jpg',
                                                 type: title,
                                                 category: 'Sofas',
                                               ),
@@ -271,6 +273,8 @@ class _CleaningServicesState extends State<CleaningServices> {
                                             MaterialPageRoute(
                                               builder: (builder) =>
                                                   SofaCleaningScreen(
+                                                imagePath:
+                                                    'assets/Carpets Cleaning.jpg',
                                                 type: title,
                                                 category: 'Carpets',
                                               ),
@@ -334,6 +338,8 @@ class _CleaningServicesState extends State<CleaningServices> {
                                             MaterialPageRoute(
                                               builder: (builder) =>
                                                   SofaCleaningScreen(
+                                                imagePath:
+                                                    'assets/Curtain Cleaning.jpg',
                                                 type: title,
                                                 category: 'Curtains Shampooing',
                                               ),
@@ -391,6 +397,8 @@ class _CleaningServicesState extends State<CleaningServices> {
                                             MaterialPageRoute(
                                               builder: (builder) =>
                                                   SofaCleaningScreen(
+                                                imagePath:
+                                                    'assets/Mattress Cleaning.jpg',
                                                 type: title,
                                                 category: 'Mattress Shampooing',
                                               ),

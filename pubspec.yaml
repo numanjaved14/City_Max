@@ -28,6 +28,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   calender_picker: ^1.0.7
+  carousel_slider: ^4.1.1
   cloud_firestore: ^3.2.1
   country_code_picker: ^2.0.2
   cupertino_icons: ^1.0.2

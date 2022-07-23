@@ -91,6 +91,8 @@ class _ResidentialAreaState extends State<ResidentialArea> {
                                             MaterialPageRoute(
                                               builder: (builder) =>
                                                   SofaCleaningScreen(
+                                                imagePath:
+                                                    'assets/Appartment.jpg',
                                                 type: title,
                                                 category: 'Appartments',
                                               ),
@@ -148,6 +150,7 @@ class _ResidentialAreaState extends State<ResidentialArea> {
                                             MaterialPageRoute(
                                               builder: (builder) =>
                                                   SofaCleaningScreen(
+                                                imagePath: 'assets/Villa.jpg',
                                                 type: title,
                                                 category: 'Villas',
                                               ),

@@ -2,6 +2,8 @@ import 'package:city_max/detail/nextdetailpage.dart';
 import 'package:flutter/material.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 
+import '../services/geo_locator.dart';
+
 class ServiceDetail extends StatefulWidget {
   var snap;
   String? title, subTitle, price;
@@ -23,10 +25,27 @@ class _ServiceDetailState extends State<ServiceDetail> {
 
   TextEditingController _descController = TextEditingController();
   TextEditingController _addrController = TextEditingController();
+
+  @override
+  void initState() {
+    getAddress();
+    super.initState();
+  }
+
   @override
   void dispose() {
     _descController.dispose();
     super.dispose();
+  }
+
+  void getAddress() async {
+    await getLocation()
+        .getCurrentLocation(true)
+        .then((value) => _addrController.text = value);
+    setState(() {
+      _addrController.text;
+    });
+    // _addressController.text = _address.toString();
   }
 
   @override
@@ -91,11 +110,14 @@ class _ServiceDetailState extends State<ServiceDetail> {
                                 },
                                 icon: Icon(
                                   Icons.remove,
-                                  size: 10,
+                                  // size: 10,
                                 )),
                             Text(
                               _hourCounter.toString(),
-                              style: TextStyle(fontSize: 10),
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             IconButton(
                                 onPressed: () {
@@ -103,7 +125,7 @@ class _ServiceDetailState extends State<ServiceDetail> {
                                 },
                                 icon: Icon(
                                   Icons.add,
-                                  size: 10,
+                                  // size: 10,
                                 )),
                           ],
                         ),
@@ -142,20 +164,24 @@ class _ServiceDetailState extends State<ServiceDetail> {
                                 },
                                 icon: Icon(
                                   Icons.remove,
-                                  size: 10,
+                                  // size: 10,
                                 )),
                             Text(
                               _heroCount.toString(),
-                              style: TextStyle(fontSize: 10),
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             IconButton(
-                                onPressed: () {
-                                  setState(() => _heroCount++);
-                                },
-                                icon: Icon(
-                                  Icons.add,
-                                  size: 10,
-                                )),
+                              onPressed: () {
+                                setState(() => _heroCount++);
+                              },
+                              icon: Icon(
+                                Icons.add,
+                                // size: 10,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -237,6 +263,7 @@ class _ServiceDetailState extends State<ServiceDetail> {
                                 Theme.of(context).colorScheme.secondary,
                             padding: 5,
                             spacing: 0.0,
+
                             // enableShape: true,
                           ),
                         ],

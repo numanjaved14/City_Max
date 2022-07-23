@@ -46,7 +46,7 @@ class _NextDetailPageState extends State<NextDetailPage> {
               padding: const EdgeInsets.all(5.0),
               child: Card(
                 child: ListTile(
-                  title: Text('Select Date'),
+                  title: const Text('What date would you like your services?'),
                   subtitle: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: DateTimePicker(
@@ -89,34 +89,42 @@ class _NextDetailPageState extends State<NextDetailPage> {
               padding: const EdgeInsets.all(5.0),
               child: Card(
                 child: ListTile(
-                  title: Text('Select Time'),
-                  subtitle: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    // child: TextField(
-                    //   controller: _timeController,
-                    //   decoration: InputDecoration(
-                    //     border: InputBorder.none,
-                    //     hintText: 'Time',
-                    //   ),
-                    // ),
-                    child: DateTimePicker(
-                      type: DateTimePickerType.time,
-                      //timePickerEntryModeInput: true,
-                      controller: _timeController,
-                      // initialValue: '', //_initialValue,
+                  title: const Text('What time would you like your services?'),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                          'Hero will arrived within selected time range.'),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        // child: TextField(
+                        //   controller: _timeController,
+                        //   decoration: InputDecoration(
+                        //     border: InputBorder.none,
+                        //     hintText: 'Time',
+                        //   ),
+                        // ),
+                        child: DateTimePicker(
+                          type: DateTimePickerType.time,
+                          //timePickerEntryModeInput: true,
+                          controller: _timeController,
+                          // initialValue: '', //_initialValue,
 
-                      icon: Icon(Icons.access_time),
-                      timeLabelText: "Time",
-                      use24HourFormat: true,
-                      locale: Locale('pt', 'BR'),
-                      onChanged: (val) => setState(() => _valueChanged4 = val),
-                      validator: (val) {
-                        setState(() => _valueToValidate4 = val ?? '');
-                        return null;
-                      },
-                      onSaved: (val) =>
-                          setState(() => _valueSaved4 = val ?? ''),
-                    ),
+                          icon: Icon(Icons.access_time),
+                          timeLabelText: "Time",
+                          use24HourFormat: true,
+                          locale: Locale('pt', 'BR'),
+                          onChanged: (val) =>
+                              setState(() => _valueChanged4 = val),
+                          validator: (val) {
+                            setState(() => _valueToValidate4 = val ?? '');
+                            return null;
+                          },
+                          onSaved: (val) =>
+                              setState(() => _valueSaved4 = val ?? ''),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

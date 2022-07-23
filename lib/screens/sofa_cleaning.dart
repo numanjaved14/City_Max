@@ -8,12 +8,14 @@ import 'package:provider/provider.dart';
 import '../providers/cart.dart';
 
 class SofaCleaningScreen extends StatefulWidget {
+  String imagePath;
   String type;
   String category;
   SofaCleaningScreen({
     Key? key,
     required this.type,
     required this.category,
+    required this.imagePath,
   }) : super(key: key);
 
   @override
@@ -72,6 +74,31 @@ class _SofaCleaningScreenState extends State<SofaCleaningScreen> {
             }
             return Column(
               children: [
+                Container(
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                  ),
+                  child: Image.asset(
+                    widget.imagePath,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: snapshot.data!.docs.length > 0
+                //       ? Text(
+                //           '${snapshot.data!.docs[0].data()['servicetype']}',
+                //           style: TextStyle(
+                //             color: Colors.black,
+                //             fontSize: 14,
+                //           ),
+                //         )
+                //       : Text(''),
+                // ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: snapshot.data!.docs.length > 0
@@ -92,6 +119,14 @@ class _SofaCleaningScreenState extends State<SofaCleaningScreen> {
                       );
                     },
                   ),
+                ),
+                ElevatedButton(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => CartScreen(),
+                    ),
+                  ),
+                  child: const Text('Proceed'),
                 ),
               ],
             );

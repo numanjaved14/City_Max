@@ -90,6 +90,8 @@ class _CommercialDisinfectionState extends State<CommercialDisinfection> {
                                             MaterialPageRoute(
                                               builder: (builder) =>
                                                   SofaCleaningScreen(
+                                                imagePath:
+                                                    'assets/Small Space.jpg',
                                                 type: title,
                                                 category: 'Small Space',
                                               ),
@@ -147,6 +149,8 @@ class _CommercialDisinfectionState extends State<CommercialDisinfection> {
                                             MaterialPageRoute(
                                               builder: (builder) =>
                                                   SofaCleaningScreen(
+                                                imagePath:
+                                                    'assets/Medium Space.jpg',
                                                 type: title,
                                                 category: 'Medium Space',
                                               ),
@@ -210,6 +214,8 @@ class _CommercialDisinfectionState extends State<CommercialDisinfection> {
                                             MaterialPageRoute(
                                               builder: (builder) =>
                                                   SofaCleaningScreen(
+                                                imagePath:
+                                                    'assets/Large Space.jpg',
                                                 type: title,
                                                 category: 'Large Space',
                                               ),

@@ -49,7 +49,7 @@ class DatabaseMethods {
   }
 
   Future<String> addOrder({
-    required List<CartItem> products,
+    required List products,
     required String serviceHours,
     required String heros,
     required String desc,

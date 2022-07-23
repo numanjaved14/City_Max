@@ -1,12 +1,8 @@
-import 'dart:ui';
-
-
 import 'package:city_max/bottom_pages/booking.dart';
 import 'package:city_max/bottom_pages/my_homepage.dart';
 import 'package:city_max/bottom_pages/noti.dart';
 import 'package:city_max/bottom_pages/user.dart';
 import 'package:flutter/material.dart';
-
 
 class MainScreen extends StatefulWidget {
   @override
@@ -22,7 +18,6 @@ class _MainScreenState extends State<MainScreen> {
     Booking(),
     Notifications(),
     User(),
-    
   ]; // to store nested tabs
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = MyHomePage(); // Our first view in viewport
@@ -41,62 +36,69 @@ class _MainScreenState extends State<MainScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-           
-                  MaterialButton(
-                    minWidth: 40,
-                    onPressed: () {
-                      setState(() {
-                        currentScreen =
-                            MyHomePage(); // if user taps on this dashboard tab will be active
-                        currentTab = 0;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                   Image.asset('assets/home.png',height: 30,width: 30,),
-                        Text(
-                          'Home',
-                          style: TextStyle(
-                            fontFamily: 'Gilroy',
-                            fontSize: 10,
-                            color: currentTab == 0
-                                ? Color(0xff0DC6DF)
-                                : Color(0xff8d8282),
-                          ),
-                        )
-                      ],
+              MaterialButton(
+                minWidth: 40,
+                onPressed: () {
+                  setState(() {
+                    currentScreen =
+                        MyHomePage(); // if user taps on this dashboard tab will be active
+                    currentTab = 0;
+                  });
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset(
+                      'assets/home.png',
+                      height: 30,
+                      width: 30,
                     ),
-                  ),
+                    Text(
+                      'Home',
+                      style: TextStyle(
+                        fontFamily: 'Gilroy',
+                        fontSize: 10,
+                        color: currentTab == 0
+                            ? Color(0xff0DC6DF)
+                            : Color(0xff8d8282),
+                      ),
+                    )
+                  ],
+                ),
+              ),
 
-                  //Orders
-                  MaterialButton(
-                    minWidth: 40,
-                    onPressed: () {
-                      setState(() {
-                        currentScreen = Booking();
-                        // if user taps on this dashboard tab will be active
-                        currentTab = 1;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                   Image.asset('assets/deadline.png',height: 30,width: 30,),
-                        Text(
-                          'Booking',
-                          style: TextStyle(
-                            fontFamily: 'Gilroy',
-                            fontSize: 10,
-                            color: currentTab == 1
-                                ? Color(0xff0DC6DF)
-                                : Color(0xff8d8282),
-                          ),
-                        )
-                      ],
+              //Orders
+              MaterialButton(
+                minWidth: 40,
+                onPressed: () {
+                  setState(() {
+                    currentScreen = Booking();
+                    // if user taps on this dashboard tab will be active
+                    currentTab = 1;
+                  });
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset(
+                      'assets/deadline.png',
+                      height: 30,
+                      width: 30,
                     ),
-                  ),
-               
+                    Text(
+                      'Booking',
+                      style: TextStyle(
+                        fontFamily: 'Gilroy',
+                        fontSize: 10,
+                        color: currentTab == 1
+                            ? Color(0xff0DC6DF)
+                            : Color(0xff8d8282),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+
               Row(
                 children: [
                   MaterialButton(
@@ -111,7 +113,11 @@ class _MainScreenState extends State<MainScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                   Image.asset('assets/notification.png',height: 30,width: 30,),
+                        Image.asset(
+                          'assets/notification.png',
+                          height: 30,
+                          width: 30,
+                        ),
                         Text(
                           'Notifications',
                           style: TextStyle(
@@ -139,11 +145,15 @@ class _MainScreenState extends State<MainScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                   Image.asset('assets/man.png',height: 30,width: 30,),
+                        Image.asset(
+                          'assets/man.png',
+                          height: 30,
+                          width: 30,
+                        ),
                         Text(
                           'Profile',
                           style: TextStyle(
-                               fontSize: 10,
+                            fontSize: 10,
                             fontFamily: 'Gilroy',
                             color: currentTab == 3
                                 ? Color(0xff0DC6DF)

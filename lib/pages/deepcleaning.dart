@@ -90,6 +90,8 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                             MaterialPageRoute(
                                               builder: (builder) =>
                                                   SofaCleaningScreen(
+                                                imagePath:
+                                                    'assets/Appartment.jpg',
                                                 type: title,
                                                 category: 'Appartments',
                                               ),
@@ -147,6 +149,7 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                             MaterialPageRoute(
                                               builder: (builder) =>
                                                   SofaCleaningScreen(
+                                                imagePath: 'assets/Villa.jpg',
                                                 type: title,
                                                 category: 'Villas',
                                               ),
@@ -210,6 +213,8 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                             MaterialPageRoute(
                                               builder: (builder) =>
                                                   SofaCleaningScreen(
+                                                imagePath:
+                                                    'assets/Kitchen Cleaning.jpg',
                                                 type: title,
                                                 category: 'Kitchen',
                                               ),
@@ -267,6 +272,8 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                             MaterialPageRoute(
                                               builder: (builder) =>
                                                   SofaCleaningScreen(
+                                                imagePath:
+                                                    'assets/Bathroom Cleaning.jpg',
                                                 type: title,
                                                 category: 'Bathroom',
                                               ),

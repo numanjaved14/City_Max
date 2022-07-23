@@ -90,6 +90,8 @@ class _LongLastingDistinctionState extends State<LongLastingDistinction> {
                                             MaterialPageRoute(
                                               builder: (builder) =>
                                                   SofaCleaningScreen(
+                                                imagePath:
+                                                    'assets/rasidential-apartment-disinfection.jpeg',
                                                 type: title,
                                                 category:
                                                     'Residential Appartments',
@@ -148,6 +150,8 @@ class _LongLastingDistinctionState extends State<LongLastingDistinction> {
                                             MaterialPageRoute(
                                               builder: (builder) =>
                                                   SofaCleaningScreen(
+                                                imagePath:
+                                                    'assets/villa-disinfection.jpg',
                                                 type: title,
                                                 category: 'Residential Villa',
                                               ),
@@ -211,6 +215,8 @@ class _LongLastingDistinctionState extends State<LongLastingDistinction> {
                                             MaterialPageRoute(
                                               builder: (builder) =>
                                                   SofaCleaningScreen(
+                                                imagePath:
+                                                    'assets/commercial-disinfection.jpg',
                                                 type: title,
                                                 category: 'Commercial',
                                               ),

@@ -27,7 +27,7 @@ class getLocation {
     var first = addresses.first;
     print("${first.name} : ${first..administrativeArea}");
     if (_isHome) {
-      return ('${first.subAdministrativeArea}, ${first.street}');
+      return ('${first.subAdministrativeArea}, ${first.thoroughfare} ,${first.street}');
     }
     return ('${first.country}, ${first.subAdministrativeArea}, ${first.street}');
   }

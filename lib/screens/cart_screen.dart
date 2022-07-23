@@ -13,40 +13,55 @@ class CartScreen extends StatelessWidget {
     final cart = Provider.of<Cart>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Cart'),
+        title: const Text('Your Cart'),
       ),
       body: Column(
         children: <Widget>[
           Card(
-            margin: EdgeInsets.all(15),
+            margin: const EdgeInsets.all(15),
             child: Padding(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     'Total',
                     style: TextStyle(fontSize: 20),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Chip(
                     label: Text(
                       'AED${cart.totalAmount.toStringAsFixed(2)}',
-                      style: TextStyle(
+                      style: const TextStyle(
                           // color: Theme.of(context).primaryTextTheme.title.color,
                           ),
                     ),
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
-                  FlatButton(
-                    child: Text('ORDER NOW'),
+                  ElevatedButton(
                     onPressed: () async {
                       // Provider.of<Orders>(context, listen: false).addOrder(
                       //   cart.items.values.toList(),
                       //   cart.totalAmount,
                       // );
+                      List<Map<String, dynamic>> _items = [];
+                      for (int i = 0; i < cart.items.length; i++) {
+                        debugPrint(i.toString());
+                        _items.add({
+                          'uuid': cart.items.values.toList()[i].uuid,
+                          'price': cart.items.values.toList()[i].price,
+                          'quantity': cart.items.values.toList()[i].quantity,
+                          'serviceType': cart.items.values.toList()[i].type,
+                          'serivceCategory':
+                              cart.items.values.toList()[i].category,
+                          'serivceSubCat':
+                              cart.items.values.toList()[i].subCategory,
+                        });
+                      }
+
                       String res = await DatabaseMethods().addOrder(
-                        products: cart.items.values.toList(),
+                        products: _items,
+                        // products: cart.items.values.toList(),
                         serviceHours: '',
                         heros: '',
                         desc: '',
@@ -56,20 +71,21 @@ class CartScreen extends StatelessWidget {
                         price: cart.totalAmount,
                         paid: false,
                       );
-                      // cart.clear();
+                      cart.clear();
                       ScaffoldMessenger(
                         child: SnackBar(
                           content: Text(res),
                         ),
                       );
                     },
-                    textColor: Theme.of(context).primaryColor,
+                    // textColor: Theme.of(context).primaryColor,
+                    child: const Text('ORDER NOW'),
                   )
                 ],
               ),
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Expanded(
             child: ListView.builder(
               itemCount: cart.items.length,
