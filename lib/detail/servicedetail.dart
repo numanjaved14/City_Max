@@ -20,33 +20,8 @@ class ServiceDetail extends StatefulWidget {
 }
 
 class _ServiceDetailState extends State<ServiceDetail> {
-  int _heroCount = 0;
-  int _hourCounter = 0;
-
-  TextEditingController _descController = TextEditingController();
-  TextEditingController _addrController = TextEditingController();
-
-  @override
-  void initState() {
-    getAddress();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _descController.dispose();
-    super.dispose();
-  }
-
-  void getAddress() async {
-    await getLocation()
-        .getCurrentLocation(true)
-        .then((value) => _addrController.text = value);
-    setState(() {
-      _addrController.text;
-    });
-    // _addressController.text = _address.toString();
-  }
+  int _heroCount = 2;
+  int _hourCounter = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +77,7 @@ class _ServiceDetailState extends State<ServiceDetail> {
                             // Text('Add Service'),
                             IconButton(
                                 onPressed: () {
-                                  if (_hourCounter != 0) {
+                                  if (_hourCounter > 2) {
                                     setState(() {
                                       setState(() => _hourCounter--);
                                     });
@@ -190,90 +165,54 @@ class _ServiceDetailState extends State<ServiceDetail> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Card(
-                child: ListTile(
-                    title: Text('Service Description'),
-                    subtitle: TextField(
-                      controller: _descController,
-                      maxLines: null,
-                      keyboardType: TextInputType.multiline,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Description',
-                      ),
-                    )),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Card(
-                child: ListTile(
-                  title: Text('Address'),
-                  subtitle: TextField(
-                    controller: _addrController,
-                    maxLines: null,
-                    keyboardType: TextInputType.multiline,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Address',
-                    ),
-                  ),
-                  trailing: IconButton(
-                    icon: Icon(
-                      Icons.pin_drop,
-                      color: Colors.blue,
-                    ),
-                    onPressed: () {},
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Card(
-                child: ListTile(
-                  title: Text('Offers'),
-                  subtitle: Row(children: <Widget>[
-                    Expanded(
-                      child: Column(
-                        children: <Widget>[
-                          CustomCheckBoxGroup<String>(
-                            // scrollController: ScrollController()
-                            unSelectedColor: Theme.of(context).canvasColor,
-                            buttonLables: [
-                              "Weekly 15% Off ",
-                              "Bi-Weekly 5% Off",
-                              "One Time",
-                            ],
-                            buttonValuesList: [
-                              "Weekly 15% OfF ",
-                              "Bi-Weekly",
-                              "One Time",
-                            ],
-                            checkBoxButtonValues: (values) {
-                              print(values);
-                            },
-                            defaultSelected: ["Weekly"],
-                            horizontal: true,
-                            width: 120,
-                            // hight: 50,
-                            selectedColor:
-                                Theme.of(context).colorScheme.secondary,
-                            padding: 5,
-                            spacing: 0.0,
 
-                            // enableShape: true,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ]),
-                  trailing: Icon(Icons.info),
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(5.0),
+            //   child: Card(
+            //     child: ListTile(
+            //       title: Text('Offers'),
+            //       subtitle: Text(),
+            //       // subtitle: Row(
+            //       //   children: <Widget>[
+            //       //     Expanded(
+            //       //       child: Column(
+            //       //         children: <Widget>[
+            //       //           CustomCheckBoxGroup<String>(
+            //       //             // scrollController: ScrollController()
+            //       //             unSelectedColor: Theme.of(context).canvasColor,
+            //       //             buttonLables: [
+            //       //               "Weekly 15% Off ",
+            //       //               "Bi-Weekly 5% Off",
+            //       //               "One Time",
+            //       //             ],
+            //       //             buttonValuesList: [
+            //       //               "Weekly 15% OfF ",
+            //       //               "Bi-Weekly",
+            //       //               "One Time",
+            //       //             ],
+            //       //             checkBoxButtonValues: (values) {
+            //       //               print(values);
+            //       //             },
+            //       //             defaultSelected: ["Weekly"],
+            //       //             horizontal: true,
+            //       //             width: 120,
+            //       //             // hight: 50,
+            //       //             selectedColor:
+            //       //                 Theme.of(context).colorScheme.secondary,
+            //       //             padding: 5,
+            //       //             spacing: 0.0,
+
+            //       //             // enableShape: true,
+            //       //           ),
+            //       //         ],
+            //       //       ),
+            //       //     ),
+            //       //   ],
+            //       // ),
+            //       trailing: Icon(Icons.info),
+            //     ),
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
@@ -284,9 +223,7 @@ class _ServiceDetailState extends State<ServiceDetail> {
                     context,
                     MaterialPageRoute(
                       builder: (builder) => NextDetailPage(
-                        desc: _descController.text,
                         heros: _heroCount.toString(),
-                        loc: _addrController.text,
                         serviceHours: _heroCount.toString(),
                         subTitle: widget.subTitle == null
                             ? widget.snap['serviceCategory']

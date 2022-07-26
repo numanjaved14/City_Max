@@ -142,25 +142,25 @@ class _CleaningServicesState extends State<CleaningServices> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                     IconButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (builder) =>
-                                                  ServiceDetail(
-                                                title: title,
-                                                subTitle:
-                                                    'HouseKeeping without Materials',
-                                                price: dataMap[
-                                                    'HouseKeeping without Materials']!,
-                                              ),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (builder) => ServiceDetail(
+                                              title: title,
+                                              subTitle:
+                                                  'HouseKeeping without Materials',
+                                              price: dataMap[
+                                                  'HouseKeeping without Materials']!,
                                             ),
-                                          );
-                                        },
-                                        icon: Icon(
-                                          Icons.arrow_forward,
-                                          color: Colors.blue,
-                                        ))
+                                          ),
+                                        );
+                                      },
+                                      icon: Icon(
+                                        Icons.arrow_forward,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
                                   ],
                                 )
                               ],

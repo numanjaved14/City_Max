@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:city_max/firebasedb/storage_methods.dart';
 import 'package:city_max/models/profile_model.dart';
+import 'package:city_max/services/send_email.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -56,7 +57,7 @@ class DatabaseMethods {
     required String loc,
     required String date,
     required String time,
-    required double price,
+    required int price,
     required bool paid,
   }) async {
     String res = 'Some error occured';
@@ -76,6 +77,58 @@ class DatabaseMethods {
         'status': 'pending',
         'uid': FirebaseAuth.instance.currentUser!.uid,
         'uuid': uuid,
+        'review': '',
+      });
+      res = 'sucess';
+
+      var userSnap = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get();
+
+      String emailStat = await SendEmail().sendEmail(
+        email: userSnap.data()!['email'],
+        name: userSnap.data()!['fullName'],
+        subject: 'New Order!',
+        message:
+            'Order id: $uuid, \n Customer id: ${userSnap.data()!['uid']}, \n Customer number: ${userSnap.data()!['phoneNumber']}',
+      );
+
+      debugPrint(emailStat);
+
+      debugPrint(res);
+    } on FirebaseException catch (e) {
+      res = e.toString();
+      debugPrint(res);
+    }
+    return res;
+  }
+
+  Future<String> deleteOrder({required orderId}) async {
+    String res = 'Some error occured';
+    debugPrint(res);
+
+    try {
+      await firebaseFirestore.collection('orders').doc(orderId).delete();
+      res = 'sucess';
+      debugPrint(res);
+    } on FirebaseException catch (e) {
+      res = e.toString();
+      debugPrint(res);
+    }
+    return res;
+  }
+
+  Future<String> reviewOrder({
+    required orderId,
+    required String review,
+  }) async {
+    String res = 'Some error occured';
+    debugPrint(res);
+
+    try {
+      await firebaseFirestore.collection('orders').doc(orderId).update({
+        'review': review,
       });
       res = 'sucess';
       debugPrint(res);

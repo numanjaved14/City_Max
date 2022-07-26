@@ -120,19 +120,27 @@ class _SofaCleaningScreenState extends State<SofaCleaningScreen> {
                     },
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => CartScreen(),
-                    ),
-                  ),
-                  child: const Text('Proceed'),
-                ),
               ],
             );
           },
         ),
       ),
+      floatingActionButton: Container(
+        // padding: EdgeInsets.only(bottom: 100.0),
+        child: Align(
+          alignment: Alignment.bottomCenter,
+          child: FloatingActionButton.extended(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => CartScreen(),
+              ),
+            ),
+            icon: Icon(Icons.shopping_cart),
+            label: Text("Proceed"),
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

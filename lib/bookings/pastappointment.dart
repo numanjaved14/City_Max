@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+import '../firebasedb/firebasedb.dart';
 import 'apointments/currentappontmentdetails.dart';
 
 class PastApointment extends StatefulWidget {
@@ -15,6 +16,7 @@ class PastApointment extends StatefulWidget {
 }
 
 class _PastApointmentState extends State<PastApointment> {
+  TextEditingController _reviewController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,10 +25,10 @@ class _PastApointmentState extends State<PastApointment> {
             ? StreamBuilder(
                 stream: FirebaseFirestore.instance
                     .collection('orders')
-                    .where(
-                      'status',
-                      isNotEqualTo: 'pending',
-                    )
+                    // .where(
+                    //   'status',
+                    //   isNotEqualTo: 'pending',
+                    // )
                     .where('uid',
                         isEqualTo: FirebaseAuth.instance.currentUser!.uid)
                     .snapshots(),
@@ -71,8 +73,135 @@ class _PastApointmentState extends State<PastApointment> {
                                         );
                                       },
                                       leading: Text(snap['date']),
-                                      title: Text(snap['serviceType']),
-                                      subtitle: Text(snap['serviceCatgory']),
+                                      trailing: snap['status'] == 'pending'
+                                          ? Text('Not Completed')
+                                          : snap['review'] == ''
+                                              ? TextButton(
+                                                  onPressed: () {
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return Dialog(
+                                                            shape: RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            20.0)), //this right here
+                                                            child: Container(
+                                                              height: 200,
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .all(
+                                                                        12.0),
+                                                                child: Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    TextField(
+                                                                      controller:
+                                                                          _reviewController,
+                                                                      decoration: InputDecoration(
+                                                                          // border: InputBorder
+                                                                          //     .none,
+                                                                          hintText: 'Review'),
+                                                                    ),
+                                                                    SizedBox(
+                                                                      width:
+                                                                          320.0,
+                                                                      child:
+                                                                          RaisedButton(
+                                                                        onPressed:
+                                                                            () async {
+                                                                          await DatabaseMethods()
+                                                                              .reviewOrder(
+                                                                                orderId: snap['uuid'],
+                                                                                review: _reviewController.text,
+                                                                              )
+                                                                              .then(
+                                                                                (value) => Navigator.pop(context),
+                                                                              );
+                                                                        },
+                                                                        child:
+                                                                            Text(
+                                                                          "Send",
+                                                                          style:
+                                                                              TextStyle(color: Colors.white),
+                                                                        ),
+                                                                        color: Colors
+                                                                            .blue,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        });
+                                                  },
+                                                  child: Text(
+                                                    'Review',
+                                                    style: TextStyle(
+                                                        color: Colors.red),
+                                                  ),
+                                                )
+                                              : TextButton(
+                                                  onPressed: () {
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return Dialog(
+                                                            shape: RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            20.0)), //this right here
+                                                            child: Container(
+                                                              height: 200,
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .all(
+                                                                        12.0),
+                                                                child: Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Center(
+                                                                      child:
+                                                                          Text(
+                                                                        snap[
+                                                                            'review'],
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        });
+                                                  },
+                                                  child: Text(
+                                                    'Review',
+                                                    style: TextStyle(
+                                                        color: Colors.red),
+                                                  ),
+                                                ),
+                                      title: Text(
+                                        'Order id: ${snap['uuid'].toString().substring(0, 7)}',
+                                      ),
+                                      subtitle:
+                                          Text('Price: ${snap['price']} AED'),
                                     ),
                                     Divider()
                                   ],

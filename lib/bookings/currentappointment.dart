@@ -1,4 +1,5 @@
 import 'package:city_max/bookings/apointments/currentappontmentdetails.dart';
+import 'package:city_max/firebasedb/firebasedb.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -68,14 +69,80 @@ class _CurrentAppointmentsState extends State<CurrentAppointments> {
                                       },
                                       leading: Text(snap['date']),
                                       trailing: TextButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return Dialog(
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20.0)), //this right here
+                                                  child: Container(
+                                                    height: 200,
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              12.0),
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          // TextField(
+                                                          //   decoration: InputDecoration(
+                                                          //       border:
+                                                          //           InputBorder
+                                                          //               .none,
+                                                          //       hintText:
+                                                          //           ''),
+                                                          // ),
+                                                          Text('Are you sure?'),
+                                                          SizedBox(
+                                                            width: 320.0,
+                                                            child: RaisedButton(
+                                                              onPressed:
+                                                                  () async {
+                                                                await DatabaseMethods()
+                                                                    .deleteOrder(
+                                                                        orderId:
+                                                                            snap['uuid'])
+                                                                    .then(
+                                                                      (value) =>
+                                                                          Navigator.pop(
+                                                                              context),
+                                                                    );
+                                                              },
+                                                              child: Text(
+                                                                "Yes",
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .white),
+                                                              ),
+                                                              color:
+                                                                  Colors.blue,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              });
+                                        },
                                         child: Text(
                                           'Cancel',
                                           style: TextStyle(color: Colors.red),
                                         ),
                                       ),
-                                      title: Text(snap['serviceType']),
-                                      subtitle: Text(snap['serviceCatgory']),
+                                      title: Text(
+                                        'Order id: ${snap['uuid'].toString().substring(0, 7)}',
+                                      ),
+                                      subtitle:
+                                          Text('Price: ${snap['price']} AED'),
                                     ),
                                     Divider()
                                   ],

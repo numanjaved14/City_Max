@@ -1,3 +1,4 @@
+import 'package:city_max/detail/nextdetailpage.dart';
 import 'package:city_max/firebasedb/firebasedb.dart';
 import 'package:city_max/screens/widgets/cart_item.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class CartScreen extends StatelessWidget {
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
                   ElevatedButton(
-                    onPressed: () async {
+                    onPressed: () {
                       // Provider.of<Orders>(context, listen: false).addOrder(
                       //   cart.items.values.toList(),
                       //   cart.totalAmount,
@@ -59,24 +60,37 @@ class CartScreen extends StatelessWidget {
                         });
                       }
 
-                      String res = await DatabaseMethods().addOrder(
-                        products: _items,
-                        // products: cart.items.values.toList(),
-                        serviceHours: '',
-                        heros: '',
-                        desc: '',
-                        loc: '',
-                        date: '',
-                        time: '',
-                        price: cart.totalAmount,
-                        paid: false,
-                      );
-                      cart.clear();
-                      ScaffoldMessenger(
-                        child: SnackBar(
-                          content: Text(res),
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => NextDetailPage(
+                            title: '',
+                            subTitle: '',
+                            serviceHours: '',
+                            heros: '',
+                            price: cart.totalAmount.toString(),
+                            products: _items,
+                          ),
                         ),
                       );
+
+                      // String res = await DatabaseMethods().addOrder(
+                      //   products: _items,
+                      //   // products: cart.items.values.toList(),
+                      //   serviceHours: '',
+                      //   heros: '',
+                      //   desc: '',
+                      //   loc: '',
+                      //   date: '',
+                      //   time: '',
+                      //   price: cart.totalAmount,
+                      //   paid: false,
+                      // );
+                      // cart.clear();
+                      // ScaffoldMessenger(
+                      //   child: SnackBar(
+                      //     content: Text(res),
+                      //   ),
+                      // );
                     },
                     // textColor: Theme.of(context).primaryColor,
                     child: const Text('ORDER NOW'),
