@@ -64,13 +64,13 @@ class _PastApointmentState extends State<PastApointment> {
                                   children: [
                                     ListTile(
                                       onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (builder) =>
-                                                AppointCurrentDetail(),
-                                          ),
-                                        );
+                                        // Navigator.push(
+                                        //   context,
+                                        //   MaterialPageRoute(
+                                        //     builder: (builder) =>
+                                        //         AppointCurrentDetail(),
+                                        //   ),
+                                        // );
                                       },
                                       leading: Text(snap['date']),
                                       trailing: snap['status'] == 'pending'

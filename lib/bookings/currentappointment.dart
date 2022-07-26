@@ -59,13 +59,13 @@ class _CurrentAppointmentsState extends State<CurrentAppointments> {
                                   children: [
                                     ListTile(
                                       onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (builder) =>
-                                                AppointCurrentDetail(),
-                                          ),
-                                        );
+                                        // Navigator.push(
+                                        //   context,
+                                        //   MaterialPageRoute(
+                                        //     builder: (builder) =>
+                                        //         AppointCurrentDetail(),
+                                        //   ),
+                                        // );
                                       },
                                       leading: Text(snap['date']),
                                       trailing: TextButton(
