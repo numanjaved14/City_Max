@@ -31,30 +31,40 @@ class _MyHomePageState extends State<MyHomePage> {
                   viewportFraction: 0.83,
                   enlargeCenterPage: true),
               itemBuilder: (BuildContext context, int index, int page) {
-                return Container(
-                  child: Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image.asset(Carousel[index]),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.black54.withOpacity(0.3),
-                            borderRadius: BorderRadius.circular(20)),
-                        width: double.infinity,
-                        height: double.infinity,
-                        // color: Colors.black54.withOpacity(0.2),
-                        // child: Center(
-                        //   child: Text(
-                        //     Carousel[index].Text,
-                        //     style: TextStyle(fontSize: 35, color: Colors.white),
-                        //   ),
-                        // ),
-                      )
-                    ],
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(
+                    Carousel[index],
+                    fit: BoxFit.cover,
                   ),
                 );
+                // return Container(
+                //   child: Stack(
+                //     children: [
+                //       ClipRRect(
+                //         borderRadius: BorderRadius.circular(20),
+                //         child: Image.asset(
+                //           Carousel[index],
+                //           fit: BoxFit.cover,
+                //         ),
+                //       ),
+                //       Container(
+                //         decoration: BoxDecoration(
+                //             color: Colors.black54.withOpacity(0.3),
+                //             borderRadius: BorderRadius.circular(20)),
+                //         width: double.infinity,
+                //         height: double.infinity,
+                //         // color: Colors.black54.withOpacity(0.2),
+                //         // child: Center(
+                //         //   child: Text(
+                //         //     Carousel[index].Text,
+                //         //     style: TextStyle(fontSize: 35, color: Colors.white),
+                //         //   ),
+                //         // ),
+                //       )
+                //     ],
+                //   ),
+                // );
               },
             ),
             SizedBox(
