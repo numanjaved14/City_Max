@@ -1,8 +1,7 @@
-import 'dart:math';
-
+import 'package:city_max/firebasedb/firebasedb.dart';
 import 'package:city_max/main/mainscreen.dart';
 import 'package:city_max/profile/profiledetail.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:city_max/utils/customdialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
@@ -127,8 +126,14 @@ class _OtState extends State<Ot> {
               .signInWithCredential(credential)
               .then((value) {
             if (value.user != null) {
+              // Customdialog.showDialogBox(context);
+              addPhone();
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (builder) => ProfileDetail()));
+                MaterialPageRoute(
+                  builder: (builder) => ProfileDetail(),
+                ),
+              );
+              // Customdialog.closeDialog(context);
             } else {}
           });
         },
@@ -150,5 +155,10 @@ class _OtState extends State<Ot> {
           });
         },
         timeout: Duration(seconds: 50));
+  }
+
+  void addPhone() async {
+    await DatabaseMethods().numberAdd();
+    // .then((value) => Customdialog.closeDialog(context));
   }
 }

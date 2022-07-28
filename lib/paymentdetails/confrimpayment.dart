@@ -6,6 +6,7 @@ import 'package:city_max/phoneAuthentication/phoneauth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart' as stripe;
+import 'package:group_radio_button/group_radio_button.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
@@ -39,6 +40,7 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
   bool _isLoading = false;
   bool _paid = false;
   int? VAT, amount;
+  String _payVia = 'Cash';
   Map<String, dynamic>? paymentIntentData;
 
   @override
@@ -158,44 +160,73 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
             padding: const EdgeInsets.all(5.0),
             child: Card(
               child: ListTile(
-                  title: Text('Payment Detail'),
-                  subtitle: Column(
-                    children: [
-                      SizedBox(
-                        height: 20,
+                title: Text('Payment Detail'),
+                subtitle: Column(
+                  children: [
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Net Amount'),
+                          Text('AED ${widget.price}'),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Net Amount'),
-                            Text('AED ${widget.price}'),
-                          ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('VAT 5%'),
+                          Text(VAT.toString()),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Total Amount'),
+                          Text('AED ${amount}'),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Card(
+              child: ListTile(
+                title: Text('Pay Via:'),
+                subtitle: Column(
+                  children: [
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: RadioGroup<String>.builder(
+                        groupValue: _payVia,
+                        onChanged: (value) => setState(() {
+                          _payVia = value!;
+                        }),
+                        items: ['Cash', 'Card'],
+                        itemBuilder: (item) => RadioButtonBuilder(
+                          item,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('VAT 5%'),
-                            Text(VAT.toString()),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Total Amount'),
-                            Text('AED ${amount}'),
-                          ],
-                        ),
-                      ),
-                    ],
-                  )),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
           Padding(
@@ -209,69 +240,82 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
                   _isLoading = true;
                 });
                 if (FirebaseAuth.instance.currentUser != null) {
-                  List<Map<String, dynamic>> products = [];
-                  widget.title == ''
-                      ? products.add({
-                          'price': widget.price,
-                          'quantity': '1',
-                          'serviceCategory': widget.subTitle,
-                          'seriveSubCat': '',
-                          'serviceType': widget.title,
-                          'uuid': '',
-                        })
-                      : products = widget.products;
-                  String res = await DatabaseMethods().addOrder(
-                    products: widget.products,
-                    // products: cart.items.values.toList(),
-                    serviceHours: widget.serviceHours,
-                    heros: widget.heros,
-                    desc: widget.desc,
-                    loc: widget.loc,
-                    date: widget.date,
-                    time: widget.time,
-                    price: amount!,
-                    paid: _paid,
-                  );
-                  cart.clear();
-                  ScaffoldMessenger(
-                    child: SnackBar(
-                      content: Text(res),
-                    ),
-                  );
-                  // String res = await DatabaseMethods().addOrder(
-                  //   type: widget.title,
-                  //   category: widget.subTitle,
-                  //   subCatgory: widget.snap['serviceSubCategory'] == null
-                  //       ? ''
-                  //       : widget.snap['serviceSubCategory'],
-                  //   serviceHours: widget.serviceHours,
-                  //   heros: widget.heros,
-                  //   desc: widget.desc,
-                  //   loc: widget.loc,
-                  //   date: widget.date,
-                  //   time: widget.time,
-                  //   price: widget.price,
-                  // );
-                  if (res == 'success') {
-                    setState(() {
-                      _isLoading = false;
-                    });
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (builder) => MainScreen(),
-                      ),
-                    );
-                  } else {
-                    setState(() {
-                      _isLoading = false;
-                    });
+                  if (_payVia == 'Card' && !_paid) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        // content: Text('Something went wrong!'),
+                        content: Text('Please pay before Ordering.'),
+                      ),
+                    );
+                    setState(() {
+                      _isLoading = false;
+                    });
+                  } else {
+                    List<Map<String, dynamic>> products = [];
+                    widget.subTitle == 'HouseKeeping without Materials' ||
+                            widget.subTitle == 'HouseKeeping with Materials'
+                        ? products.add({
+                            'price': widget.price,
+                            'quantity': '1',
+                            'serviceCategory': widget.subTitle,
+                            'seriveSubCat': '',
+                            'serviceType': widget.title,
+                            'uuid': '',
+                          })
+                        : products = widget.products;
+                    String res = await DatabaseMethods().addOrder(
+                      products: products,
+                      // products: cart.items.values.toList(),
+                      serviceHours: widget.serviceHours,
+                      heros: widget.heros,
+                      desc: widget.desc,
+                      loc: widget.loc,
+                      date: widget.date,
+                      time: widget.time,
+                      price: amount!,
+                      paid: _paid,
+                      payVia: _payVia,
+                    );
+                    cart.clear();
+                    ScaffoldMessenger(
+                      child: SnackBar(
                         content: Text(res),
                       ),
                     );
+                    // String res = await DatabaseMethods().addOrder(
+                    //   type: widget.title,
+                    //   category: widget.subTitle,
+                    //   subCatgory: widget.snap['serviceSubCategory'] == null
+                    //       ? ''
+                    //       : widget.snap['serviceSubCategory'],
+                    //   serviceHours: widget.serviceHours,
+                    //   heros: widget.heros,
+                    //   desc: widget.desc,
+                    //   loc: widget.loc,
+                    //   date: widget.date,
+                    //   time: widget.time,
+                    //   price: widget.price,
+                    // );
+                    if (res == 'success') {
+                      setState(() {
+                        _isLoading = false;
+                      });
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (builder) => MainScreen(),
+                        ),
+                      );
+                    } else {
+                      setState(() {
+                        _isLoading = false;
+                      });
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          // content: Text('Something went wrong!'),
+                          content: Text(res),
+                        ),
+                      );
+                    }
                   }
                 } else {
                   setState(() {
@@ -307,7 +351,9 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
               onPressed: () {
                 makePayment();
               },
-              child: const Text('Click here to add payment method'),
+              child: _payVia == 'Card' && !_paid
+                  ? const Text('Click here to add payment method')
+                  : const Text(''),
             ),
           ),
         ],
@@ -355,7 +401,9 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
             'payment intent' + paymentIntentData!['client_secret'].toString());
         print('payment intent' + paymentIntentData!['amount'].toString());
         print('payment intent' + paymentIntentData.toString());
-        _paid = true;
+        setState(() {
+          _paid = true;
+        });
         //orderPlaceApi(paymentIntentData!['id'].toString());
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("paid successfully")));

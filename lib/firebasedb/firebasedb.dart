@@ -14,18 +14,45 @@ import '../providers/cart.dart';
 class DatabaseMethods {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
+//OTP Number Add
+  Future<String> numberAdd() async {
+    String res = 'Some error occured';
+    try {
+      //Add User to the database with modal
+      ProfileModel userModel = ProfileModel(
+          gender: '',
+          fullName: '',
+          uid: FirebaseAuth.instance.currentUser!.uid,
+          email: '',
+          dob: '',
+          phoneNumber:
+              FirebaseAuth.instance.currentUser!.phoneNumber.toString(),
+          photoURL: '');
+      await firebaseFirestore
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .set(
+            userModel.toJson(),
+          );
+      res = 'success';
+      debugPrint(res);
+    } catch (e) {
+      res = e.toString();
+    }
+    return res;
+  }
+
   //Profile Details
   Future<String> profileDetail(
       {required String email,
       required String uid,
       required String fullName,
       required String dob,
-      required String phoneNumber,
       required String gender,
       required Uint8List file}) async {
     String res = 'Some error occured';
     try {
-      if (email.isNotEmpty || fullName.isNotEmpty || phoneNumber.isNotEmpty) {
+      if (email.isNotEmpty || fullName.isNotEmpty) {
         String photoURL = await StorageMethods()
             .uploadImageToStorage('ProfilePics', file, false);
         //Add User to the database with modal
@@ -35,12 +62,13 @@ class DatabaseMethods {
             uid: FirebaseAuth.instance.currentUser!.uid,
             email: email,
             dob: dob,
-            phoneNumber: phoneNumber,
+            phoneNumber:
+                FirebaseAuth.instance.currentUser!.phoneNumber.toString(),
             photoURL: photoURL);
         await firebaseFirestore
             .collection('users')
             .doc(uid)
-            .set(userModel.toJson());
+            .update(userModel.toJson());
         res = 'success';
       }
     } catch (e) {
@@ -57,6 +85,7 @@ class DatabaseMethods {
     required String loc,
     required String date,
     required String time,
+    required String payVia,
     required int price,
     required bool paid,
   }) async {
@@ -77,6 +106,7 @@ class DatabaseMethods {
         'status': 'pending',
         'uid': FirebaseAuth.instance.currentUser!.uid,
         'uuid': uuid,
+        'payVia': payVia,
         'review': '',
       });
       res = 'sucess';

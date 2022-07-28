@@ -133,14 +133,16 @@ class _ProfileDetailState extends State<ProfileDetail> {
                             width: 200,
                           ),
                     Positioned(
-                        bottom: -10,
-                        left: 70,
-                        child: IconButton(
-                            onPressed: () => selectImage(),
-                            icon: Icon(
-                              Icons.add_a_photo,
-                              color: Colors.white,
-                            )))
+                      bottom: -10,
+                      left: 70,
+                      child: IconButton(
+                        onPressed: () => selectImage(),
+                        icon: Icon(
+                          Icons.add_a_photo,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -193,9 +195,9 @@ class _ProfileDetailState extends State<ProfileDetail> {
                   ),
                 ),
               ),
-              _titleText('Phone Number'),
-              _textFormFieldFunctionIcon(
-                  phoneController, (p0) => null, "Phone Number"),
+              // _titleText('Phone Number'),
+              // _textFormFieldFunctionIcon(
+              //     phoneController, (p0) => null, "Phone Number"),
               Container(
                 margin: EdgeInsets.only(top: 30),
                 child: Center(
@@ -207,7 +209,9 @@ class _ProfileDetailState extends State<ProfileDetail> {
                     ),
                     onPressed: profile,
                     child: _isLoading
-                        ? CircularProgressIndicator()
+                        ? const CircularProgressIndicator(
+                            color: Colors.white,
+                          )
                         : Text(
                             'Next ',
                             style: GoogleFonts.getFont('Roboto',
@@ -241,13 +245,13 @@ class _ProfileDetailState extends State<ProfileDetail> {
       _isLoading = true;
     });
     String rse = await DatabaseMethods().profileDetail(
-        email: emailController.text,
-        fullName: nameController.text,
-        dob: dobController.text,
-        phoneNumber: phoneController.text,
-        file: _image!,
-        gender: dropdownvalue,
-        uid: FirebaseAuth.instance.currentUser!.uid);
+      email: emailController.text,
+      fullName: nameController.text,
+      dob: dobController.text,
+      file: _image!,
+      gender: dropdownvalue,
+      uid: FirebaseAuth.instance.currentUser!.uid,
+    );
 
     print(rse);
     setState(() {

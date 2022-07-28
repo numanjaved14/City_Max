@@ -224,7 +224,7 @@ class _ServiceDetailState extends State<ServiceDetail> {
                     MaterialPageRoute(
                       builder: (builder) => NextDetailPage(
                         heros: _heroCount.toString(),
-                        serviceHours: _heroCount.toString(),
+                        serviceHours: _hourCounter.toString(),
                         subTitle: widget.subTitle == null
                             ? widget.snap['serviceCategory']
                             : widget.subTitle!,

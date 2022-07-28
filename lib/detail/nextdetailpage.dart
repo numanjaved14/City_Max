@@ -1,6 +1,7 @@
 import 'package:city_max/paymentdetails/confrimpayment.dart';
 import 'package:flutter/material.dart';
 import 'package:date_time_picker/date_time_picker.dart';
+import 'package:intl/intl.dart';
 
 import '../services/geo_locator.dart';
 
@@ -36,6 +37,7 @@ class _NextDetailPageState extends State<NextDetailPage> {
   @override
   void initState() {
     debugPrint(widget.products.toString());
+    _timeController.text = formatTimeOfDay(TimeOfDay.now());
     getAddress();
     // TODO: implement initState
     super.initState();
@@ -123,33 +125,27 @@ class _NextDetailPageState extends State<NextDetailPage> {
                       children: [
                         const Text(
                             'Hero will arrived within selected time range.'),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          // child: TextField(
-                          //   controller: _timeController,
-                          //   decoration: InputDecoration(
-                          //     border: InputBorder.none,
-                          //     hintText: 'Time',
-                          //   ),
-                          // ),
-                          child: DateTimePicker(
-                            type: DateTimePickerType.time,
-                            //timePickerEntryModeInput: true,
-                            controller: _timeController,
-                            // initialValue: '', //_initialValue,
-
-                            icon: Icon(Icons.access_time),
-                            timeLabelText: "Time",
-                            use24HourFormat: true,
-                            locale: Locale('pt', 'BR'),
-                            onChanged: (val) =>
-                                setState(() => _valueChanged4 = val),
-                            validator: (val) {
-                              setState(() => _valueToValidate4 = val ?? '');
-                              return null;
-                            },
-                            onSaved: (val) =>
-                                setState(() => _valueSaved4 = val ?? ''),
+                        InkWell(
+                          onTap: () {
+                            _selectTime(context);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            // child: TextField(
+                            //   controller: _timeController,
+                            //   decoration: InputDecoration(
+                            //     border: InputBorder.none,
+                            //     hintText: 'Time',
+                            //   ),
+                            // ),
+                            child: AbsorbPointer(
+                              child: TextField(
+                                controller: _timeController,
+                                decoration: InputDecoration(
+                                  suffixIcon: Icon(Icons.av_timer),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -231,5 +227,29 @@ class _NextDetailPageState extends State<NextDetailPage> {
         ),
       ),
     );
+  }
+
+  void _selectTime(BuildContext context) async {
+    TimeOfDay selectedTime = TimeOfDay.now();
+    final TimeOfDay? timeOfDay = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+      initialEntryMode: TimePickerEntryMode.dial,
+    );
+    if (timeOfDay != null && timeOfDay != selectedTime) {
+      var time = formatTimeOfDay(timeOfDay);
+      debugPrint(time.toString());
+      setState(() {
+        _timeController.text = time.toString();
+        selectedTime = timeOfDay;
+      });
+    }
+  }
+
+  String formatTimeOfDay(TimeOfDay tod) {
+    final now = new DateTime.now();
+    final dt = DateTime(now.year, now.month, now.day, tod.hour, tod.minute);
+    final format = DateFormat.jm(); //"6:00 AM"
+    return format.format(dt);
   }
 }

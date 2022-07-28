@@ -49,8 +49,10 @@ dependencies:
   geocoding: ^2.0.4
   geolocator: ^9.0.0
   google_fonts: ^3.0.1
+  group_radio_button: ^1.2.0
   http: ^0.13.4
   image_picker: ^0.8.5+3
+  intl: ^0.17.0
   pinput: ^2.2.11
   provider: ^6.0.3
   time_picker_sheet: ^0.0.2+1
