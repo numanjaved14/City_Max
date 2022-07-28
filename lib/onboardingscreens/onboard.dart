@@ -5,7 +5,6 @@ import 'package:city_max/phoneAuthentication/phoneauth.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 
-
 class OnBoardingScreens extends StatefulWidget {
   @override
   _OnBoardingScreensState createState() => _OnBoardingScreensState();
@@ -15,7 +14,6 @@ int currentPage = 0;
 
 final _controller = PageController(initialPage: 0);
 List<Widget> _pages = [
- 
   Column(children: [
     Expanded(child: OnBoradingOne()),
   ]),
@@ -33,7 +31,6 @@ List<Widget> _pages = [
       ),
     ],
   ),
- 
 ];
 
 class _OnBoardingScreensState extends State<OnBoardingScreens> {
@@ -63,21 +60,26 @@ class _OnBoardingScreensState extends State<OnBoardingScreens> {
               activeColor: Color(0xff2CA8DC),
             ),
           ),
-
-        TextButton(onPressed: (){}, child: Text('Skip',
-        style: TextStyle(color: Color(0xff2CA8DC)),)),
-        SizedBox(height: 10),
-        Container(
-          margin: EdgeInsets.only(bottom: 20),
-          child: ElevatedButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (builder) => PhoneAuth()));
-          }, child: Text('Next'),
-          style: ElevatedButton.styleFrom(
-            shape: StadiumBorder(),
-            primary: Color(0xff2CA8DC),
-            fixedSize: Size(330, 50)
-          )),
-        )
+          TextButton(
+              onPressed: () {},
+              child: Text(
+                'Skip',
+                style: TextStyle(color: Color(0xff2CA8DC)),
+              )),
+          SizedBox(height: 10),
+          Container(
+            margin: EdgeInsets.only(bottom: 20),
+            child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (builder) => PhoneAuth()));
+                },
+                child: Text('Next'),
+                style: ElevatedButton.styleFrom(
+                    shape: StadiumBorder(),
+                    primary: Color(0xff2CA8DC),
+                    fixedSize: Size(330, 50))),
+          )
         ],
       ),
     );
