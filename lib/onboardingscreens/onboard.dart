@@ -1,4 +1,3 @@
-
 import 'package:city_max/onboardingscreens/onboardingone.dart';
 import 'package:city_max/onboardingscreens/onboardingthree.dart';
 import 'package:city_max/onboardingscreens/onboardingtwo.dart';
