@@ -20,288 +20,367 @@ class _DeepCleaningState extends State<DeepCleaning> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder(
-          stream: FirebaseFirestore.instance
-              .collection('Services')
-              .where('servicetype', isEqualTo: 'Deep Cleaning')
-              .snapshots(),
-          builder: (context,
-              AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-            if (snapshot.hasError) {
-              return const Center(
-                child: Text('Something went wrong'),
-              );
-            }
-
-            if (snapshot.hasData) {
-              snapshot.data!.docs[0].data();
-              Map<String, String> dataMap = new HashMap();
-              for (int i = 0; i < snapshot.data!.docs.length; i++) {
-                debugPrint('...........' +
-                    snapshot.data!.docs[i].data()['serviceCategory']);
-                dataMap[snapshot.data!.docs[i].data()['serviceCategory']] =
-                    snapshot.data!.docs[i].data()['price'];
+      body: SingleChildScrollView(
+        child: StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection('Services')
+                .where('servicetype', isEqualTo: 'Deep Cleaning')
+                .snapshots(),
+            builder: (context,
+                AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+              if (snapshot.hasError) {
+                return const Center(
+                  child: Text('Something went wrong'),
+                );
               }
-              debugPrint(dataMap.toString());
 
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 180,
-                        padding: const EdgeInsets.all(8.0),
-                        child: Card(
-                          child: Padding(
+              if (snapshot.hasData) {
+                snapshot.data!.docs[0].data();
+                Map<String, String> dataMap = new HashMap();
+                for (int i = 0; i < snapshot.data!.docs.length; i++) {
+                  debugPrint('...........' +
+                      snapshot.data!.docs[i].data()['serviceCategory']);
+                  dataMap[snapshot.data!.docs[i].data()['serviceCategory']] =
+                      snapshot.data!.docs[i].data()['price'];
+                }
+                debugPrint(dataMap.toString());
+
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (builder) => SofaCleaningScreen(
+                                  imagePath: 'assets/Appartment.jpg',
+                                  type: title,
+                                  category: 'Appartments',
+                                ),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            width: 180,
                             padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Center(
-                                    child: Image.asset(
-                                  'assets/cleaner.png',
-                                  height: 70,
-                                  width: 70,
-                                )),
-                                SizedBox(height: 10),
-                                Center(
-                                    child: Text(
-                                  'Appartment',
-                                  textAlign: TextAlign.center,
-                                )),
-                                SizedBox(height: 10),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      'Fixed Price:\n${dataMap['Appartments']} AED',
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold),
+                                    Center(
+                                      child: FittedBox(
+                                        fit: BoxFit.contain,
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.white,
+                                          radius: 60,
+                                          backgroundImage: AssetImage(
+                                              'assets/Appartment.jpg'),
+                                        ),
+                                      ),
                                     ),
-                                    IconButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (builder) =>
-                                                  SofaCleaningScreen(
-                                                imagePath:
-                                                    'assets/Appartment.jpg',
-                                                type: title,
-                                                category: 'Appartments',
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                        icon: Icon(
-                                          Icons.arrow_forward,
-                                          color: Colors.blue,
-                                        ))
+                                    SizedBox(height: 10),
+                                    Center(
+                                        child: Text(
+                                      'Appartment',
+                                      textAlign: TextAlign.center,
+                                    )),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Fixed Price:\n${dataMap['Appartments']} AED',
+                                          textAlign: TextAlign.start,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        IconButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (builder) =>
+                                                      SofaCleaningScreen(
+                                                    imagePath:
+                                                        'assets/Appartment.jpg',
+                                                    type: title,
+                                                    category: 'Appartments',
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            icon: Icon(
+                                              Icons.arrow_forward,
+                                              color: Colors.blue,
+                                            ))
+                                      ],
+                                    )
                                   ],
-                                )
-                              ],
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: 180,
-                        padding: const EdgeInsets.all(8.0),
-                        child: Card(
-                          child: Padding(
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (builder) => SofaCleaningScreen(
+                                  imagePath: 'assets/Villa.jpg',
+                                  type: title,
+                                  category: 'Villas',
+                                ),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            width: 180,
                             padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Center(
-                                    child: Image.asset(
-                                  'assets/cleaner.png',
-                                  height: 70,
-                                  width: 70,
-                                )),
-                                SizedBox(height: 10),
-                                Center(
-                                    child: Text(
-                                  'Villa',
-                                  textAlign: TextAlign.center,
-                                )),
-                                SizedBox(height: 10),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      'Fixed Price:\n${dataMap['Villas']} AED',
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold),
+                                    Center(
+                                      child: FittedBox(
+                                        fit: BoxFit.contain,
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.white,
+                                          radius: 60,
+                                          backgroundImage: AssetImage(
+                                              'assets/Appartment.jpg'),
+                                        ),
+                                      ),
                                     ),
-                                    IconButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (builder) =>
-                                                  SofaCleaningScreen(
-                                                imagePath: 'assets/Villa.jpg',
-                                                type: title,
-                                                category: 'Villas',
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                        icon: Icon(
-                                          Icons.arrow_forward,
-                                          color: Colors.blue,
-                                        ))
+                                    SizedBox(height: 10),
+                                    Center(
+                                        child: Text(
+                                      'Villa',
+                                      textAlign: TextAlign.center,
+                                    )),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Fixed Price:\n${dataMap['Villas']} AED',
+                                          textAlign: TextAlign.start,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        IconButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (builder) =>
+                                                      SofaCleaningScreen(
+                                                    imagePath:
+                                                        'assets/Villa.jpg',
+                                                    type: title,
+                                                    category: 'Villas',
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            icon: Icon(
+                                              Icons.arrow_forward,
+                                              color: Colors.blue,
+                                            ))
+                                      ],
+                                    )
                                   ],
-                                )
-                              ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    //Sofas
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (builder) => SofaCleaningScreen(
+                                  imagePath: 'assets/Kitchen Cleaning.jpg',
+                                  type: title,
+                                  category: 'Kitchen',
+                                ),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            width: 180,
+                            padding: const EdgeInsets.all(8.0),
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Center(
+                                      child: FittedBox(
+                                        fit: BoxFit.contain,
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.white,
+                                          radius: 60,
+                                          backgroundImage: AssetImage(
+                                              'assets/Kitchen Cleaning.jpg'),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 10),
+                                    Center(
+                                        child: Text(
+                                      'Kitchen',
+                                      textAlign: TextAlign.center,
+                                    )),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Fixed Price:\n${dataMap['Kitchen']} AED Per Seat',
+                                          textAlign: TextAlign.start,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        IconButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (builder) =>
+                                                      SofaCleaningScreen(
+                                                    imagePath:
+                                                        'assets/Kitchen Cleaning.jpg',
+                                                    type: title,
+                                                    category: 'Kitchen',
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            icon: Icon(
+                                              Icons.arrow_forward,
+                                              color: Colors.blue,
+                                            ))
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      )
-                    ],
-                  ),
-                  //Sofas
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 180,
-                        padding: const EdgeInsets.all(8.0),
-                        child: Card(
-                          child: Padding(
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (builder) => SofaCleaningScreen(
+                                  imagePath: 'assets/Bathroom Cleaning.jpg',
+                                  type: title,
+                                  category: 'Bathroom',
+                                ),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            width: 180,
                             padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Center(
-                                    child: Image.asset(
-                                  'assets/kitchen.png',
-                                  height: 70,
-                                  width: 70,
-                                )),
-                                SizedBox(height: 10),
-                                Center(
-                                    child: Text(
-                                  'Kitchen',
-                                  textAlign: TextAlign.center,
-                                )),
-                                SizedBox(height: 10),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      'Fixed Price:\n${dataMap['Kitchen']} AED Per Seat',
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold),
+                                    Center(
+                                      child: FittedBox(
+                                        fit: BoxFit.contain,
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.white,
+                                          radius: 60,
+                                          backgroundImage: AssetImage(
+                                              'assets/Bathroom Cleaning.jpg'),
+                                        ),
+                                      ),
                                     ),
-                                    IconButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (builder) =>
-                                                  SofaCleaningScreen(
-                                                imagePath:
-                                                    'assets/Kitchen Cleaning.jpg',
-                                                type: title,
-                                                category: 'Kitchen',
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                        icon: Icon(
-                                          Icons.arrow_forward,
-                                          color: Colors.blue,
-                                        ))
+                                    SizedBox(height: 10),
+                                    Center(
+                                        child: Text(
+                                      'Bathroom',
+                                      textAlign: TextAlign.center,
+                                    )),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Fixed Price:\n${dataMap['Bathroom']} AED per',
+                                          textAlign: TextAlign.start,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        IconButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (builder) =>
+                                                      SofaCleaningScreen(
+                                                    imagePath:
+                                                        'assets/Bathroom Cleaning.jpg',
+                                                    type: title,
+                                                    category: 'Bathroom',
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            icon: Icon(
+                                              Icons.arrow_forward,
+                                              color: Colors.blue,
+                                            ))
+                                      ],
+                                    )
                                   ],
-                                )
-                              ],
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: 180,
-                        padding: const EdgeInsets.all(8.0),
-                        child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Center(
-                                    child: Image.asset(
-                                  'assets/bath.png',
-                                  height: 70,
-                                  width: 70,
-                                )),
-                                SizedBox(height: 10),
-                                Center(
-                                    child: Text(
-                                  'Bathroom',
-                                  textAlign: TextAlign.center,
-                                )),
-                                SizedBox(height: 10),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Fixed Price:\n${dataMap['Bathroom']} AED per',
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    IconButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (builder) =>
-                                                  SofaCleaningScreen(
-                                                imagePath:
-                                                    'assets/Bathroom Cleaning.jpg',
-                                                type: title,
-                                                category: 'Bathroom',
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                        icon: Icon(
-                                          Icons.arrow_forward,
-                                          color: Colors.blue,
-                                        ))
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  //Curtain
-                ],
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator.adaptive(),
-              );
-            }
-          }),
+                      ],
+                    ),
+                    //Curtain
+                  ],
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(),
+                );
+              }
+            }),
+      ),
     );
   }
 }
