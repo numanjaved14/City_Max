@@ -79,7 +79,7 @@ class _CleaningServicesState extends State<CleaningServices> {
                                           backgroundColor: Colors.white,
                                           radius: 60,
                                           backgroundImage: AssetImage(
-                                              'assets/Appartment.jpg'),
+                                              'assets/Housekeeping-without-materials.jpg'),
                                         ),
                                       ),
                                     ),
@@ -159,7 +159,7 @@ class _CleaningServicesState extends State<CleaningServices> {
                                           backgroundColor: Colors.white,
                                           radius: 60,
                                           backgroundImage: AssetImage(
-                                              'assets/Appartment.jpg'),
+                                              'assets/housekeeping-with-materials.jpg'),
                                         ),
                                       ),
                                     ),

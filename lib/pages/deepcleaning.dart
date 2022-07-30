@@ -157,8 +157,8 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                         child: CircleAvatar(
                                           backgroundColor: Colors.white,
                                           radius: 60,
-                                          backgroundImage: AssetImage(
-                                              'assets/Appartment.jpg'),
+                                          backgroundImage:
+                                              AssetImage('assets/Villa.jpg'),
                                         ),
                                       ),
                                     ),
