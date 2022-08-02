@@ -2,10 +2,6 @@ import 'dart:collection';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
-import '../detail/servicedetail.dart';
 import '../screens/sofa_cleaning.dart';
 
 class ResidentialArea extends StatefulWidget {
@@ -92,31 +88,13 @@ class _ResidentialAreaState extends State<ResidentialArea> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Hourly Price:\n${dataMap['Appartments']} AED',
+                                          'Fixed Price Starts at\n${dataMap['Appartments']} AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontSize: 10,
                                               color: Colors.black,
-                                              fontWeight: FontWeight.bold),
+                                              fontWeight: FontWeight.w300),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      SofaCleaningScreen(
-                                                    imagePath:
-                                                        'assets/Appartment.jpg',
-                                                    type: title,
-                                                    category: 'Appartments',
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],
@@ -165,31 +143,13 @@ class _ResidentialAreaState extends State<ResidentialArea> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Hourly Price:\n${dataMap['Villas']} AED',
+                                          'Fixed Price Starts at:\n${dataMap['Villas']} AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
                                               color: Colors.black,
-                                              fontWeight: FontWeight.bold),
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w300),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      SofaCleaningScreen(
-                                                    imagePath:
-                                                        'assets/Villa.jpg',
-                                                    type: title,
-                                                    category: 'Villas',
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],

@@ -91,31 +91,13 @@ class _CommercialDisinfectionState extends State<CommercialDisinfection> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Upto 500 \nSQM Price:\n${dataMap['Small Space']} AED',
+                                          'Upto 500 to 1000 \nSQM Starts at:\n${dataMap['Small Space']} AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontSize: 10,
                                               color: Colors.black,
-                                              fontWeight: FontWeight.bold),
+                                              fontWeight: FontWeight.w300),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      SofaCleaningScreen(
-                                                    imagePath:
-                                                        'assets/Small Space.jpg',
-                                                    type: title,
-                                                    category: 'Small Space',
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],
@@ -164,31 +146,13 @@ class _CommercialDisinfectionState extends State<CommercialDisinfection> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          '500 to 1500 \nSQM Price:\n${dataMap['Medium Space']} AED',
+                                          '500 to 1000 \nSQM Starts at:\n${dataMap['Medium Space']} AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontSize: 10,
                                               color: Colors.black,
-                                              fontWeight: FontWeight.bold),
+                                              fontWeight: FontWeight.w300),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      SofaCleaningScreen(
-                                                    imagePath:
-                                                        'assets/Medium Space.jpg',
-                                                    type: title,
-                                                    category: 'Medium Space',
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],
@@ -243,31 +207,13 @@ class _CommercialDisinfectionState extends State<CommercialDisinfection> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Over 1500 \nSQM Price:\n${dataMap['Large Space']} AED',
+                                          'Over 1000 \nSQM Price:\n${dataMap['Large Space']} AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontSize: 10,
                                               color: Colors.black,
-                                              fontWeight: FontWeight.bold),
+                                              fontWeight: FontWeight.w300),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      SofaCleaningScreen(
-                                                    imagePath:
-                                                        'assets/Large Space.jpg',
-                                                    type: title,
-                                                    category: 'Large Space',
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],

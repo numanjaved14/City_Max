@@ -97,32 +97,13 @@ class _LongLastingDistinctionState extends State<LongLastingDistinction> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Start Price:\n${dataMap['Residential Appartments']} AED',
+                                          'Fixed Price Starts at\n${dataMap['Residential Appartments']} AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontSize: 10,
                                               color: Colors.black,
-                                              fontWeight: FontWeight.bold),
+                                              fontWeight: FontWeight.w300),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      SofaCleaningScreen(
-                                                    imagePath:
-                                                        'assets/rasidential-apartment-disinfection.jpeg',
-                                                    type: title,
-                                                    category:
-                                                        'Residential Appartments',
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],
@@ -176,32 +157,13 @@ class _LongLastingDistinctionState extends State<LongLastingDistinction> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Start Price:\n${dataMap['Residential Villa']} AED',
+                                          'Fixed Price Starts at\n${dataMap['Residential Villa']} AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontSize: 10,
                                               color: Colors.black,
-                                              fontWeight: FontWeight.bold),
+                                              fontWeight: FontWeight.w300),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      SofaCleaningScreen(
-                                                    imagePath:
-                                                        'assets/villa-disinfection.jpg',
-                                                    type: title,
-                                                    category:
-                                                        'Residential Villa',
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],
@@ -262,31 +224,13 @@ class _LongLastingDistinctionState extends State<LongLastingDistinction> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Start Price:\n${dataMap['Commercial']} AED',
+                                          'Fixed Price Starts at:\n${dataMap['Commercial']} AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
                                               color: Colors.black,
-                                              fontWeight: FontWeight.bold),
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w300),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      SofaCleaningScreen(
-                                                    imagePath:
-                                                        'assets/commercial-disinfection.jpg',
-                                                    type: title,
-                                                    category: 'Commercial',
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],
