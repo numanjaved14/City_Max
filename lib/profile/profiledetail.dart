@@ -78,7 +78,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController dobController = TextEditingController();
-  Uint8List? _image;
+  // Uint8List? _image;
 
   //Looding Variable
   bool _isLoading = false;
@@ -92,15 +92,15 @@ class _ProfileDetailState extends State<ProfileDetail> {
     dobController.clear();
   }
 
-  final ImagePicker _picker = ImagePicker();
-  File? imageUrl;
-  String imageLink = "";
-  void getImage() async {
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      imageUrl = File(image!.path);
-    });
-  }
+  // final ImagePicker _picker = ImagePicker();
+  // File? imageUrl;
+  // String imageLink = "";
+  // void getImage() async {
+  //   final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+  //   setState(() {
+  //     imageUrl = File(image!.path);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -121,31 +121,31 @@ class _ProfileDetailState extends State<ProfileDetail> {
                         fontWeight: FontWeight.bold,
                         fontSize: 36),
                   ))),
-              Center(
-                child: Stack(
-                  children: [
-                    _image != null
-                        ? CircleAvatar(
-                            radius: 59, backgroundImage: MemoryImage(_image!))
-                        : Image.asset(
-                            'assets/profile.png',
-                            height: 100,
-                            width: 200,
-                          ),
-                    Positioned(
-                      bottom: -10,
-                      left: 70,
-                      child: IconButton(
-                        onPressed: () => selectImage(),
-                        icon: Icon(
-                          Icons.add_a_photo,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // Center(
+              //   child: Stack(
+              //     children: [
+              //       _image != null
+              //           ? CircleAvatar(
+              //               radius: 59, backgroundImage: MemoryImage(_image!))
+              //           : Image.asset(
+              //               'assets/profile.png',
+              //               height: 100,
+              //               width: 200,
+              //             ),
+              //       Positioned(
+              //         bottom: -10,
+              //         left: 70,
+              //         child: IconButton(
+              //           onPressed: () => selectImage(),
+              //           icon: Icon(
+              //             Icons.add_a_photo,
+              //             color: Colors.white,
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               _titleText('Full Name'),
               _textFormFieldFunctionIcon(
                   nameController, (p0) => null, "Mathawe Wilson"),
@@ -232,12 +232,12 @@ class _ProfileDetailState extends State<ProfileDetail> {
   }
 
   /// Select Image From Gallery
-  selectImage() async {
-    Uint8List ui = await pickImage(ImageSource.gallery);
-    setState(() {
-      _image = ui;
-    });
-  }
+  // selectImage() async {
+  //   Uint8List ui = await pickImage(ImageSource.gallery);
+  //   setState(() {
+  //     _image = ui;
+  //   });
+  // }
 
   ///ProfileDetails
   profile() async {
@@ -248,7 +248,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
       email: emailController.text,
       fullName: nameController.text,
       dob: dobController.text,
-      file: _image!,
+      // file: _image!,
       gender: dropdownvalue,
       uid: FirebaseAuth.instance.currentUser!.uid,
     );

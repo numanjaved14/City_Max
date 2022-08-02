@@ -20,14 +20,14 @@ class DatabaseMethods {
     try {
       //Add User to the database with modal
       ProfileModel userModel = ProfileModel(
-          gender: '',
-          fullName: '',
-          uid: FirebaseAuth.instance.currentUser!.uid,
-          email: '',
-          dob: '',
-          phoneNumber:
-              FirebaseAuth.instance.currentUser!.phoneNumber.toString(),
-          photoURL: '');
+        gender: '',
+        fullName: '',
+        uid: FirebaseAuth.instance.currentUser!.uid,
+        email: '',
+        dob: '',
+        phoneNumber: FirebaseAuth.instance.currentUser!.phoneNumber.toString(),
+        // photoURL: '',
+      );
       await firebaseFirestore
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -43,28 +43,30 @@ class DatabaseMethods {
   }
 
   //Profile Details
-  Future<String> profileDetail(
-      {required String email,
-      required String uid,
-      required String fullName,
-      required String dob,
-      required String gender,
-      required Uint8List file}) async {
+  Future<String> profileDetail({
+    required String email,
+    required String uid,
+    required String fullName,
+    required String dob,
+    required String gender,
+    // required Uint8List file,
+  }) async {
     String res = 'Some error occured';
     try {
       if (email.isNotEmpty || fullName.isNotEmpty) {
-        String photoURL = await StorageMethods()
-            .uploadImageToStorage('ProfilePics', file, false);
+        // String photoURL = await StorageMethods()
+        //     .uploadImageToStorage('ProfilePics', file, false);
         //Add User to the database with modal
         ProfileModel userModel = ProfileModel(
-            gender: gender,
-            fullName: fullName,
-            uid: FirebaseAuth.instance.currentUser!.uid,
-            email: email,
-            dob: dob,
-            phoneNumber:
-                FirebaseAuth.instance.currentUser!.phoneNumber.toString(),
-            photoURL: photoURL);
+          gender: gender,
+          fullName: fullName,
+          uid: FirebaseAuth.instance.currentUser!.uid,
+          email: email,
+          dob: dob,
+          phoneNumber:
+              FirebaseAuth.instance.currentUser!.phoneNumber.toString(),
+          // photoURL: photoURL,
+        );
         await firebaseFirestore
             .collection('users')
             .doc(uid)

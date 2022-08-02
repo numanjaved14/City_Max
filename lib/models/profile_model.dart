@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProfileModel {
@@ -8,16 +7,17 @@ class ProfileModel {
   String dob;
   String gender;
   String phoneNumber;
-  String photoURL;
+  // String photoURL;
 
-  ProfileModel(
-      {required this.uid,
-      required this.gender,
-      required this.email,
-      required this.dob,
-      required this.photoURL,
-      required this.fullName,
-      required this.phoneNumber,});
+  ProfileModel({
+    required this.uid,
+    required this.gender,
+    required this.email,
+    required this.dob,
+    // required this.photoURL,
+    required this.fullName,
+    required this.phoneNumber,
+  });
 
   ///Converting OBject into Json Object
   Map<String, dynamic> toJson() => {
@@ -26,21 +26,22 @@ class ProfileModel {
         'email': email,
         'dob': dob,
         'phoneNumber': phoneNumber,
-        'photoURL': photoURL,
-        'gender':gender
+        // 'photoURL': photoURL,
+        'gender': gender
       };
 
   ///
-  static ProfileModel fromSnap(DocumentSnapshot snaps){
-    var snapshot = snaps.data() as Map<String,dynamic>;
+  static ProfileModel fromSnap(DocumentSnapshot snaps) {
+    var snapshot = snaps.data() as Map<String, dynamic>;
 
     return ProfileModel(
-      gender:snapshot['gender'],
-    fullName: snapshot['fullName'],
-    uid: snapshot['uid'],
-    email: snapshot['email'],
-    photoURL: snapshot['photoURL'],
-    dob: snapshot['dob'],
-    phoneNumber: snapshot['phoneNumber'],);    
-  }    
+      gender: snapshot['gender'],
+      fullName: snapshot['fullName'],
+      uid: snapshot['uid'],
+      email: snapshot['email'],
+      // photoURL: snapshot['photoURL'],
+      dob: snapshot['dob'],
+      phoneNumber: snapshot['phoneNumber'],
+    );
+  }
 }
