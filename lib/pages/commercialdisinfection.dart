@@ -88,34 +88,16 @@ class _CommercialDisinfectionState extends State<CommercialDisinfection> {
                                     SizedBox(height: 10),
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          'Upto 500 \nSQM Price:\n${dataMap['Small Space']} AED',
+                                          'Small Space Upto 500 \nSQM ${dataMap['Small Space']} at AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontSize: 10,
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      SofaCleaningScreen(
-                                                    imagePath:
-                                                        'assets/Small Space.jpg',
-                                                    type: title,
-                                                    category: 'Small Space',
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],
@@ -161,34 +143,16 @@ class _CommercialDisinfectionState extends State<CommercialDisinfection> {
                                     SizedBox(height: 10),
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          '500 to 1500 \nSQM Price:\n${dataMap['Medium Space']} AED',
+                                          'Medium Space 500 to \n1000 SQM ${dataMap['Medium Space']} at AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontSize: 10,
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      SofaCleaningScreen(
-                                                    imagePath:
-                                                        'assets/Medium Space.jpg',
-                                                    type: title,
-                                                    category: 'Medium Space',
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],
@@ -240,34 +204,16 @@ class _CommercialDisinfectionState extends State<CommercialDisinfection> {
                                     SizedBox(height: 10),
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          'Over 1500 \nSQM Price:\n${dataMap['Large Space']} AED',
+                                          'Large Space 1000 to 1500 \nSQM  ${dataMap['Large Space']} at AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontSize: 10,
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      SofaCleaningScreen(
-                                                    imagePath:
-                                                        'assets/Large Space.jpg',
-                                                    type: title,
-                                                    category: 'Large Space',
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],

@@ -92,35 +92,16 @@ class _CleaningServicesState extends State<CleaningServices> {
                                     SizedBox(height: 10),
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          'Hourly Price:\n${dataMap['HouseKeeping with Materials'].toString()} AED',
+                                          'Service is charged hourly \nat AED ${dataMap['HouseKeeping with Materials'].toString()} ',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
                                               color: Colors.black,
+                                              fontSize: 10,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      ServiceDetail(
-                                                    title: title,
-                                                    subTitle:
-                                                        'HouseKeeping with Materials',
-                                                    price: dataMap[
-                                                        'HouseKeeping with Materials']!,
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],
@@ -175,32 +156,12 @@ class _CleaningServicesState extends State<CleaningServices> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Hourly Price:\n${dataMap['HouseKeeping without Materials'].toString()} AED',
+                                          'Service is charged hourly \nat AED ${dataMap['HouseKeeping without Materials'].toString()} ',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontSize: 10,
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold),
-                                        ),
-                                        IconButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (builder) =>
-                                                    ServiceDetail(
-                                                  title: title,
-                                                  subTitle:
-                                                      'HouseKeeping without Materials',
-                                                  price: dataMap[
-                                                      'HouseKeeping without Materials']!,
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                          icon: Icon(
-                                            Icons.arrow_forward,
-                                            color: Colors.blue,
-                                          ),
                                         ),
                                       ],
                                     )
@@ -260,31 +221,13 @@ class _CleaningServicesState extends State<CleaningServices> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Fixed Price:\n${dataMap['Sofas'].toString()} AED',
+                                          'Service at fixed price:\n${dataMap['Sofas'].toString()} AED per seat',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontSize: 10,
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      SofaCleaningScreen(
-                                                    imagePath:
-                                                        'assets/Sofas Cleaning.jpg',
-                                                    type: title,
-                                                    category: 'Sofas',
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],
@@ -338,31 +281,13 @@ class _CleaningServicesState extends State<CleaningServices> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Fixed Price:\n${dataMap['Carpets'].toString()} AED per Hour',
+                                          'Service at fixed price:\n${dataMap['Carpets'].toString()} AED hourly',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontSize: 10,
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      SofaCleaningScreen(
-                                                    imagePath:
-                                                        'assets/Carpets Cleaning.jpg',
-                                                    type: title,
-                                                    category: 'Carpets',
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],
@@ -422,32 +347,13 @@ class _CleaningServicesState extends State<CleaningServices> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Fixed Price:\n${dataMap['Curtains Shampooing'].toString()} AED',
+                                          'Service at fixed price:\n${dataMap['Curtains Shampooing'].toString()} AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontSize: 10,
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      SofaCleaningScreen(
-                                                    imagePath:
-                                                        'assets/Curtain Cleaning.jpg',
-                                                    type: title,
-                                                    category:
-                                                        'Curtains Shampooing',
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],
@@ -501,32 +407,13 @@ class _CleaningServicesState extends State<CleaningServices> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Fixed Price:\n${dataMap['Mattress Shampooing'].toString()}AED',
+                                          'Service at fixed price:\n${dataMap['Mattress Shampooing'].toString()} AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontSize: 10,
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      SofaCleaningScreen(
-                                                    imagePath:
-                                                        'assets/Mattress Cleaning.jpg',
-                                                    type: title,
-                                                    category:
-                                                        'Mattress Shampooing',
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],
