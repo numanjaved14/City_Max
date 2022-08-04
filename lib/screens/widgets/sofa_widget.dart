@@ -25,10 +25,30 @@ class _ListTileItemState extends State<ListTileItem> {
           widget.snap['serviceSubCategory'].toString(),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        subtitle: Text(
-          '${widget.snap['price'].toString()} AED',
-          // style: TextStyle(fontWeight: Font),
-        ),
+        subtitle: widget.snap['discount'].toString() == '' ||
+                widget.snap['discount'].toString() == '0'
+            ? Text(
+                '${widget.snap['price'].toString()} AED',
+                // style: TextStyle(fontWeight: Font),
+              )
+            : Text.rich(
+                TextSpan(
+                  text: 'Discount Price ',
+                  children: <TextSpan>[
+                    new TextSpan(
+                      text: '${widget.snap['price'].toString()} AED',
+                      style: new TextStyle(
+                        color: Colors.grey,
+                        decoration: TextDecoration.lineThrough,
+                      ),
+                    ),
+                    new TextSpan(
+                      text:
+                          '\n ${double.parse(widget.snap['price'].toString()) - double.parse(widget.snap['discount'].toString())} AED',
+                    ),
+                  ],
+                ),
+              ),
         trailing: Container(
           height: MediaQuery.of(context).size.height * 0.04,
           width: MediaQuery.of(context).size.width * 0.3,
@@ -62,7 +82,11 @@ class _ListTileItemState extends State<ListTileItem> {
                     setState(() => _itemCount++);
                     cart.addItem(
                       uuid: widget.snap['uuid'].toString(),
-                      price: double.parse(widget.snap['price'].toString()),
+                      price: widget.snap['discount'].toString() == '' ||
+                              widget.snap['discount'].toString() == '0'
+                          ? double.parse(widget.snap['price'].toString())
+                          : double.parse(widget.snap['price'].toString()) -
+                              double.parse(widget.snap['discount'].toString()),
                       type: widget.snap['serviceType'].toString(),
                       desc: widget.snap['description'].toString(),
                       category: widget.snap['serviceCategory'].toString(),
