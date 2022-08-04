@@ -14,85 +14,90 @@ class _MainScreenState extends State<MainScreen> {
   // Properties & Variables needed
   PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
+  int currentTab = 0; // to keep track of active tab index
+  final List<Widget> screens = [
+    MyHomePage(),
+    Booking(),
+    Notifications(),
+    User(),
+  ]; // to store nested tabs
+  final PageStorageBucket bucket = PageStorageBucket();
+  Widget currentScreen = MyHomePage(); // Our first view in viewport
 
   @override
   Widget build(BuildContext context) {
-    return PersistentTabView(
-        backgroundColor: Colors.white, // Default is Colors.white.
-        handleAndroidBackButtonPress: true, // Default is true.
-        resizeToAvoidBottomInset:
-            true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-        stateManagement: true, // Default is true.
-        hideNavigationBarWhenKeyboardShows:
-            true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
-        decoration: NavBarDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          colorBehindNavBar: Colors.white,
+    return Scaffold(
+        body: PersistentTabView(
+      screens: screens,
+      backgroundColor: Colors.white, // Default is Colors.white.
+      handleAndroidBackButtonPress: true, // Default is true.
+      resizeToAvoidBottomInset:
+          true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
+      stateManagement: true, // Default is true.
+      hideNavigationBarWhenKeyboardShows:
+          true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+      decoration: NavBarDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        colorBehindNavBar: Colors.white,
+      ),
+      popAllScreensOnTapOfSelectedTab: true,
+      popActionScreens: PopActionScreensType.all,
+      itemAnimationProperties: ItemAnimationProperties(
+        // Navigation Bar's items animation properties.
+        duration: Duration(milliseconds: 200),
+        curve: Curves.ease,
+      ),
+      screenTransitionAnimation: ScreenTransitionAnimation(
+        // Screen transition animation on change of selected tab.
+        animateTabTransition: true,
+        curve: Curves.ease,
+        duration: Duration(milliseconds: 200),
+      ),
+      context,
+      controller: _controller,
+      // items: [],
+      items: [
+        PersistentBottomNavBarItem(
+          icon: Image.asset(
+            'assets/home.png',
+            height: 30,
+            width: 30,
+          ),
+          title: ("Home"),
+          activeColorPrimary: Color(0xff0DC6DF),
+          inactiveColorPrimary: Color(0xff8d8282),
         ),
-        popAllScreensOnTapOfSelectedTab: true,
-        popActionScreens: PopActionScreensType.all,
-        itemAnimationProperties: ItemAnimationProperties(
-          // Navigation Bar's items animation properties.
-          duration: Duration(milliseconds: 200),
-          curve: Curves.ease,
+        PersistentBottomNavBarItem(
+          icon: Image.asset(
+            'assets/deadline.png',
+            height: 30,
+            width: 30,
+          ),
+          title: ("Booking"),
+          activeColorPrimary: Color(0xff0DC6DF),
+          inactiveColorPrimary: Color(0xff8d8282),
         ),
-        screenTransitionAnimation: ScreenTransitionAnimation(
-          // Screen transition animation on change of selected tab.
-          animateTabTransition: true,
-          curve: Curves.ease,
-          duration: Duration(milliseconds: 200),
+        PersistentBottomNavBarItem(
+          icon: Image.asset(
+            'assets/notification.png',
+            height: 30,
+            width: 30,
+          ),
+          title: ("Notifications"),
+          activeColorPrimary: Color(0xff0DC6DF),
+          inactiveColorPrimary: Color(0xff8d8282),
         ),
-        context,
-        controller: _controller,
-        // items: [],
-        items: [
-          PersistentBottomNavBarItem(
-            icon: Image.asset(
-              'assets/home.png',
-              height: 30,
-              width: 30,
-            ),
-            title: ("Home"),
-            activeColorPrimary: Color(0xff0DC6DF),
-            inactiveColorPrimary: Color(0xff8d8282),
+        PersistentBottomNavBarItem(
+          icon: Image.asset(
+            'assets/man.png',
+            height: 30,
+            width: 30,
           ),
-          PersistentBottomNavBarItem(
-            icon: Image.asset(
-              'assets/service.png',
-              height: 30,
-              width: 30,
-            ),
-            title: ("Booking"),
-            activeColorPrimary: Color(0xff0DC6DF),
-            inactiveColorPrimary: Color(0xff8d8282),
-          ),
-          PersistentBottomNavBarItem(
-            icon: Image.asset(
-              'assets/notification.png',
-              height: 30,
-              width: 30,
-            ),
-            title: ("Notifications"),
-            activeColorPrimary: Color(0xff0DC6DF),
-            inactiveColorPrimary: Color(0xff8d8282),
-          ),
-          PersistentBottomNavBarItem(
-            icon: Image.asset(
-              'assets/man.png',
-              height: 30,
-              width: 30,
-            ),
-            title: ("Users"),
-            activeColorPrimary: Color(0xff0DC6DF),
-            inactiveColorPrimary: Color(0xff8d8282),
-          ),
-        ],
-        screens: [
-          MyHomePage(),
-          Booking(),
-          Notifications(),
-          User(),
-          // if user taps on this dashboard tab will be active
-        ]);
+          title: ("Profile"),
+          activeColorPrimary: Color(0xff0DC6DF),
+          inactiveColorPrimary: Color(0xff8d8282),
+        ),
+      ],
+    ));
   }
 }

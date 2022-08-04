@@ -79,8 +79,8 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                         child: CircleAvatar(
                                           backgroundColor: Colors.white,
                                           radius: 60,
-                                          backgroundImage:
-                                              AssetImage('assets/aaa.jpg'),
+                                          backgroundImage: AssetImage(
+                                              'assets/Appartment.jpg'),
                                         ),
                                       ),
                                     ),
@@ -96,13 +96,31 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Fixed Price Starts at\n${dataMap['Appartments']} AED',
+                                          'Fixed Price:\n${dataMap['Appartments']} AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
-                                              fontSize: 10,
                                               color: Colors.black,
-                                              fontWeight: FontWeight.w300),
+                                              fontWeight: FontWeight.bold),
                                         ),
+                                        IconButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (builder) =>
+                                                      SofaCleaningScreen(
+                                                    imagePath:
+                                                        'assets/Appartment.jpg',
+                                                    type: title,
+                                                    category: 'Appartments',
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            icon: Icon(
+                                              Icons.arrow_forward,
+                                              color: Colors.blue,
+                                            ))
                                       ],
                                     )
                                   ],
@@ -140,7 +158,7 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                           backgroundColor: Colors.white,
                                           radius: 60,
                                           backgroundImage:
-                                              AssetImage('assets/v.jpg'),
+                                              AssetImage('assets/Villa.jpg'),
                                         ),
                                       ),
                                     ),
@@ -156,13 +174,31 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Fixed Price Starts at:\n${dataMap['Villas']} AED',
+                                          'Fixed Price:\n${dataMap['Villas']} AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
-                                              fontSize: 10,
                                               color: Colors.black,
-                                              fontWeight: FontWeight.w300),
+                                              fontWeight: FontWeight.bold),
                                         ),
+                                        IconButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (builder) =>
+                                                      SofaCleaningScreen(
+                                                    imagePath:
+                                                        'assets/Villa.jpg',
+                                                    type: title,
+                                                    category: 'Villas',
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            icon: Icon(
+                                              Icons.arrow_forward,
+                                              color: Colors.blue,
+                                            ))
                                       ],
                                     )
                                   ],
@@ -222,13 +258,31 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Fixed Price Starts at\n${dataMap['Kitchen']} AED',
+                                          'Fixed Price:\n${dataMap['Kitchen']} AED Per Seat',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
-                                              fontSize: 10,
                                               color: Colors.black,
-                                              fontWeight: FontWeight.w300),
+                                              fontWeight: FontWeight.bold),
                                         ),
+                                        IconButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (builder) =>
+                                                      SofaCleaningScreen(
+                                                    imagePath:
+                                                        'assets/Kitchen Cleaning.jpg',
+                                                    type: title,
+                                                    category: 'Kitchen',
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            icon: Icon(
+                                              Icons.arrow_forward,
+                                              color: Colors.blue,
+                                            ))
                                       ],
                                     )
                                   ],
@@ -282,13 +336,31 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Fixed Price Starts at\n${dataMap['Bathroom']} AED',
+                                          'Fixed Price:\n${dataMap['Bathroom']} AED per',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
-                                              fontSize: 10,
                                               color: Colors.black,
-                                              fontWeight: FontWeight.w300),
+                                              fontWeight: FontWeight.bold),
                                         ),
+                                        IconButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (builder) =>
+                                                      SofaCleaningScreen(
+                                                    imagePath:
+                                                        'assets/Bathroom Cleaning.jpg',
+                                                    type: title,
+                                                    category: 'Bathroom',
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            icon: Icon(
+                                              Icons.arrow_forward,
+                                              color: Colors.blue,
+                                            ))
                                       ],
                                     )
                                   ],
