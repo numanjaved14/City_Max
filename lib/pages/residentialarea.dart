@@ -25,7 +25,7 @@ class _ResidentialAreaState extends State<ResidentialArea> {
         child: StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection('Services')
-                .where('servicetype', isEqualTo: 'Resdential Area')
+                .where('servicetype', isEqualTo: 'Residential Area')
                 .snapshots(),
             builder: (context,
                 AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
@@ -150,6 +150,7 @@ class _ResidentialAreaState extends State<ResidentialArea> {
                                           'Service at hourly Price:\n${dataMap['Villas']} AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontSize: 10,
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold),
                                         ),

@@ -32,10 +32,10 @@ class _CleaningStuffState extends State<CleaningStuff> {
                 text: "Deep Cleaning",
               ),
               Tab(
-                text: "Long-lasting Distinction",
+                text: "Long-Lasting Disinfection",
               ),
               Tab(
-                text: "Resdential Area",
+                text: "Residential Area",
               ),
               Tab(
                 text: "Commercial Disinfection",

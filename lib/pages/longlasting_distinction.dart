@@ -24,7 +24,7 @@ class _LongLastingDistinctionState extends State<LongLastingDistinction> {
         child: StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection('Services')
-                .where('servicetype', isEqualTo: 'Long-lasting Distintion')
+                .where('servicetype', isEqualTo: 'Long-Lasting Disinfection')
                 .snapshots(),
             builder: (context,
                 AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
