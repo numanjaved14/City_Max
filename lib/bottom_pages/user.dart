@@ -2,6 +2,7 @@
 import 'package:city_max/bottom_pages/noti.dart';
 import 'package:city_max/paymentdetails/add_card.dart';
 import 'package:city_max/phoneAuthentication/phoneauth.dart';
+import 'package:city_max/utils/aboutcitymax.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -71,10 +72,8 @@ class User extends StatelessWidget {
                 endIndent: 15,
               ),
               zisttile('About Us', Icons.payment, () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (builder) => AddCard()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (builder) => AboutCityMax()));
               }),
               Divider(
                 color: Colors.grey,
