@@ -300,16 +300,17 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
                       setState(() {
                         _isLoading = false;
                       });
+                      await _showMyDialog;
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (builder) => MainScreen(),
+                      //   ),
+                      // );
                     } else {
                       setState(() {
                         _isLoading = false;
                       });
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (builder) => MainScreen(),
-                        ),
-                      );
                     }
                   }
                 } else {
@@ -353,6 +354,39 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
           ),
         ],
       ),
+    );
+  }
+
+  //Dialog
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Order Conformation'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Order is created Successfully'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Go Back HomePage'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (builder) => MainScreen(),
+                  ),
+                );
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 
