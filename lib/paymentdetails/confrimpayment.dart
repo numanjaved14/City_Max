@@ -300,7 +300,7 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
                       setState(() {
                         _isLoading = false;
                       });
-                      await _showMyDialog;
+                       _showMyDialog;
                       // Navigator.push(
                       //   context,
                       //   MaterialPageRoute(
