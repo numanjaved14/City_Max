@@ -4,6 +4,7 @@ import 'package:city_max/firebasedb/firebasedb.dart';
 import 'package:city_max/main/mainscreen.dart';
 import 'package:city_max/phoneAuthentication/phoneauth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart' as stripe;
 import 'package:group_radio_button/group_radio_button.dart';
@@ -299,20 +300,14 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
                       setState(() {
                         _isLoading = false;
                       });
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (builder) => MainScreen(),
-                        ),
-                      );
                     } else {
                       setState(() {
                         _isLoading = false;
                       });
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          // content: Text('Something went wrong!'),
-                          content: Text(res),
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (builder) => MainScreen(),
                         ),
                       );
                     }
