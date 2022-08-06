@@ -1,3 +1,4 @@
+import 'package:city_max/google_maps_screen/google_maps_screen.dart';
 import 'package:city_max/paymentdetails/confrimpayment.dart';
 import 'package:flutter/material.dart';
 import 'package:date_time_picker/date_time_picker.dart';
@@ -7,6 +8,7 @@ import '../services/geo_locator.dart';
 
 class NextDetailPage extends StatefulWidget {
   String title, subTitle, serviceHours, heros, price;
+  String? addr;
   var snap;
   var products;
 
@@ -19,6 +21,7 @@ class NextDetailPage extends StatefulWidget {
     required this.price,
     this.snap,
     this.products,
+    this.addr,
   }) : super(key: key);
 
   @override
@@ -33,6 +36,8 @@ class _NextDetailPageState extends State<NextDetailPage> {
   String _valueChanged4 = '';
   String _valueToValidate4 = '';
   String _valueSaved4 = '';
+
+  List latlong = [];
 
   @override
   void initState() {
@@ -51,12 +56,19 @@ class _NextDetailPageState extends State<NextDetailPage> {
   }
 
   void getAddress() async {
-    await getLocation()
-        .getCurrentLocation(true)
-        .then((value) => _addrController.text = value);
-    setState(() {
-      _addrController.text;
-    });
+    if (widget.addr == null) {
+      await getLocation()
+          .getCurrentLocation(true)
+          .then((value) => _addrController.text = value);
+      latlong = await getLocation().getLatLong();
+      setState(() {
+        _addrController.text;
+      });
+    } else {
+      setState(() {
+        _addrController.text = widget.addr!;
+      });
+    }
     // _addressController.text = _address.toString();
   }
 
@@ -188,7 +200,24 @@ class _NextDetailPageState extends State<NextDetailPage> {
                         Icons.pin_drop,
                         color: Colors.blue,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => GoogleMapScreen(
+                              heros: widget.heros,
+                              price: widget.price,
+                              serviceHours: widget.serviceHours,
+                              subTitle: widget.subTitle,
+                              title: widget.title,
+                              products: widget.products,
+                              snap: widget.snap,
+                              lat: latlong[0],
+                              long: latlong[1],
+                              loc: _addrController.text,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),

@@ -277,11 +277,12 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
                       payVia: _payVia,
                     );
                     cart.clear();
-                    ScaffoldMessenger(
-                      child: SnackBar(
-                        content: Text(res),
-                      ),
-                    );
+                    showAboutDialog(context: context);
+                    // ScaffoldMessenger(
+                    //   child: SnackBar(
+                    //     content: Text(res),
+                    //   ),
+                    // );
                     // String res = await DatabaseMethods().addOrder(
                     //   type: widget.title,
                     //   category: widget.subTitle,
@@ -300,7 +301,7 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
                       setState(() {
                         _isLoading = false;
                       });
-                       _showMyDialog;
+                      _showMyDialog;
                       // Navigator.push(
                       //   context,
                       //   MaterialPageRoute(
@@ -486,5 +487,37 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
     double price = double.parse(widget.price);
     VAT = (price * 0.05).round();
     amount = (price + VAT!).round();
+  }
+
+  showAlertDialog(BuildContext context) {
+    // Create button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => MainScreen(),
+          ),
+          (route) => false,
+        );
+      },
+    );
+
+    // Create AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Order Created Successfully"),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }
