@@ -25,7 +25,7 @@ class _ResidentialAreaState extends State<ResidentialArea> {
         child: StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection('Services')
-                .where('servicetype', isEqualTo: 'Resdential Area')
+                .where('servicetype', isEqualTo: 'Residential Area')
                 .snapshots(),
             builder: (context,
                 AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
@@ -89,34 +89,16 @@ class _ResidentialAreaState extends State<ResidentialArea> {
                                     SizedBox(height: 10),
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          'Hourly Price:\n${dataMap['Appartments']} AED',
+                                          'Service at hourly price\n${dataMap['Appartments']} AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontSize: 10,
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      SofaCleaningScreen(
-                                                    imagePath:
-                                                        'assets/Appartment.jpg',
-                                                    type: title,
-                                                    category: 'Appartments',
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],
@@ -162,34 +144,16 @@ class _ResidentialAreaState extends State<ResidentialArea> {
                                     SizedBox(height: 10),
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          'Hourly Price:\n${dataMap['Villas']} AED',
+                                          'Service at hourly Price:\n${dataMap['Villas']} AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontSize: 10,
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (builder) =>
-                                                      SofaCleaningScreen(
-                                                    imagePath:
-                                                        'assets/Villa.jpg',
-                                                    type: title,
-                                                    category: 'Villas',
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            icon: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.blue,
-                                            ))
                                       ],
                                     )
                                   ],

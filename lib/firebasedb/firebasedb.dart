@@ -52,11 +52,13 @@ class DatabaseMethods {
     // required Uint8List file,
   }) async {
     String res = 'Some error occured';
+
     try {
       if (email.isNotEmpty || fullName.isNotEmpty) {
         // String photoURL = await StorageMethods()
         //     .uploadImageToStorage('ProfilePics', file, false);
         //Add User to the database with modal
+
         ProfileModel userModel = ProfileModel(
           gender: gender,
           fullName: fullName,

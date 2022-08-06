@@ -4,6 +4,7 @@ import 'package:city_max/firebasedb/firebasedb.dart';
 import 'package:city_max/main/mainscreen.dart';
 import 'package:city_max/phoneAuthentication/phoneauth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart' as stripe;
 import 'package:group_radio_button/group_radio_button.dart';
@@ -299,22 +300,17 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
                       setState(() {
                         _isLoading = false;
                       });
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (builder) => MainScreen(),
-                        ),
-                      );
+                       _showMyDialog;
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (builder) => MainScreen(),
+                      //   ),
+                      // );
                     } else {
                       setState(() {
                         _isLoading = false;
                       });
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          // content: Text('Something went wrong!'),
-                          content: Text(res),
-                        ),
-                      );
                     }
                   }
                 } else {
@@ -358,6 +354,39 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
           ),
         ],
       ),
+    );
+  }
+
+  //Dialog
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Order Conformation'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Order is created Successfully'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Go Back HomePage'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (builder) => MainScreen(),
+                  ),
+                );
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 
