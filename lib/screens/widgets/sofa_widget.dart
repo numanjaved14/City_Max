@@ -74,8 +74,10 @@ class _ListTileItemState extends State<ListTileItem> {
                   ),
                 ),
                 Text(
+                  
                   _itemCount.toString(),
-                  style: TextStyle(fontSize: 10),
+                  style: TextStyle(fontSize: 10,color: Colors.black)
+                  ,
                 ),
                 IconButton(
                   onPressed: () {
