@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../main/mainscreen.dart';
+
 class Customdialog {
   static Widget showdialog() {
     return CircularProgressIndicator(
@@ -12,7 +14,7 @@ class Customdialog {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value)));
   }
 
-  static void showDialogBox(BuildContext context) {
+  static void showDialogBox(String res, BuildContext context) {
     showDialog(
         barrierDismissible: false,
         context: context,
@@ -21,6 +23,20 @@ class Customdialog {
             onWillPop: () => Future.value(false),
             child: AlertDialog(
               //alignment: Alignment.center,
+              actions: [
+                ElevatedButton(
+                    child: Text("OK"),
+                    onPressed: () {
+                      closeDialog(context);
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => MainScreen(),
+                        ),
+                        (route) => false,
+                      );
+                    }),
+              ],
               insetPadding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
@@ -28,13 +44,10 @@ class Customdialog {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CircularProgressIndicator(
-                    color: Colors.black,
-                  ),
                   SizedBox(
                     height: 10,
                   ),
-                  Center(child: Text("Please wait...")),
+                  Center(child: Text(res)),
                 ],
               ),
             ),

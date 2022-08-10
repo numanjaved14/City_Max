@@ -35,7 +35,7 @@ class _CommercialDisinfectionState extends State<CommercialDisinfection> {
               }
 
               if (snapshot.hasData) {
-                snapshot.data!.docs[0].data();
+                // snapshot.data!.docs[0].data();
                 Map<String, String> dataMap = new HashMap();
                 for (int i = 0; i < snapshot.data!.docs.length; i++) {
                   debugPrint('...........' +

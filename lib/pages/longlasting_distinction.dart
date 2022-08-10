@@ -2,10 +2,7 @@ import 'dart:collection';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-import '../detail/servicedetail.dart';
 import '../screens/sofa_cleaning.dart';
 
 class LongLastingDistinction extends StatefulWidget {
@@ -24,7 +21,7 @@ class _LongLastingDistinctionState extends State<LongLastingDistinction> {
         child: StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection('Services')
-                .where('servicetype', isEqualTo: 'Long-Lasting Disinfection')
+                .where('servicetype', isEqualTo: 'Long-lasting Distintion')
                 .snapshots(),
             builder: (context,
                 AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
@@ -35,7 +32,7 @@ class _LongLastingDistinctionState extends State<LongLastingDistinction> {
               }
 
               if (snapshot.hasData) {
-                snapshot.data!.docs[0].data();
+                // snapshot.data!.docs[0].data();
                 Map<String, String> dataMap = new HashMap();
                 for (int i = 0; i < snapshot.data!.docs.length; i++) {
                   debugPrint('...........' +

@@ -33,7 +33,7 @@ class _CleaningServicesState extends State<CleaningServices> {
               }
 
               if (snapshot.hasData) {
-                snapshot.data!.docs[0].data();
+                // snapshot.data!.docs[0].data();
                 Map<String, String> dataMap = new HashMap();
                 for (int i = 0; i < snapshot.data!.docs.length; i++) {
                   debugPrint('...........' +
@@ -281,7 +281,7 @@ class _CleaningServicesState extends State<CleaningServices> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Service at fixed price:\n${dataMap['Carpets'].toString()} AED hourly',
+                                          'Service at fixed price:\n${dataMap['Carpets'].toString()} AED',
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
                                               fontSize: 10,

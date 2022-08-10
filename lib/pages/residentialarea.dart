@@ -25,7 +25,7 @@ class _ResidentialAreaState extends State<ResidentialArea> {
         child: StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection('Services')
-                .where('servicetype', isEqualTo: 'Residential Area')
+                .where('servicetype', isEqualTo: 'Resdential Area')
                 .snapshots(),
             builder: (context,
                 AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
@@ -36,7 +36,7 @@ class _ResidentialAreaState extends State<ResidentialArea> {
               }
 
               if (snapshot.hasData) {
-                snapshot.data!.docs[0].data();
+                // snapshot.data!.docs[0].data();
                 Map<String, String> dataMap = new HashMap();
                 for (int i = 0; i < snapshot.data!.docs.length; i++) {
                   debugPrint('...........' +

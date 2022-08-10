@@ -35,7 +35,7 @@ class _DeepCleaningState extends State<DeepCleaning> {
               }
 
               if (snapshot.hasData) {
-                snapshot.data!.docs[0].data();
+                // snapshot.data!.docs[0].data();
                 Map<String, String> dataMap = new HashMap();
                 for (int i = 0; i < snapshot.data!.docs.length; i++) {
                   debugPrint('...........' +
@@ -117,7 +117,7 @@ class _DeepCleaningState extends State<DeepCleaning> {
                               context,
                               MaterialPageRoute(
                                 builder: (builder) => SofaCleaningScreen(
-                                  imagePath: 'assets/Villa.jpg',
+                                  imagePath: 'assets/v.jpeg',
                                   type: title,
                                   category: 'Villas',
                                 ),
@@ -140,7 +140,7 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                           backgroundColor: Colors.white,
                                           radius: 60,
                                           backgroundImage:
-                                              AssetImage('assets/v.jpetg'),
+                                              AssetImage('assets/v.jpeg'),
                                         ),
                                       ),
                                     ),

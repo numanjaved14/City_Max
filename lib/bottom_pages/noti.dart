@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -26,6 +27,10 @@ class _NotificationsState extends State<Notifications> {
               .where(
                 'status',
                 isEqualTo: 'pending',
+              )
+              .where(
+                'uid',
+                isEqualTo: FirebaseAuth.instance.currentUser!.uid,
               )
               .snapshots(),
           builder: (context,
@@ -81,7 +86,7 @@ class _NotificationsState extends State<Notifications> {
                                   // ),
                                   leading: Text(snap['date']),
                                   title: Text(
-                                    'Location: ${snap['loc'].toString().substring(0, 7)}',
+                                    'Location: ${snap['loc'].toString()}',
                                   ),
                                   subtitle: Text('Price: ${snap['price']} AED'),
                                 ),
