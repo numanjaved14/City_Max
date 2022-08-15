@@ -37,13 +37,14 @@ class _NextDetailPageState extends State<NextDetailPage> {
   String _valueToValidate4 = '';
   String _valueSaved4 = '';
 
-  List latlong = [];
+  // List latlong = [];
 
   @override
   void initState() {
     debugPrint(widget.products.toString());
     _timeController.text = formatTimeOfDay(TimeOfDay.now());
-    getAddress();
+    _addrController.text = widget.addr!;
+    // getAddress();
     // TODO: implement initState
     super.initState();
   }
@@ -55,22 +56,22 @@ class _NextDetailPageState extends State<NextDetailPage> {
     super.dispose();
   }
 
-  void getAddress() async {
-    if (widget.addr == null) {
-      await getLocation()
-          .getCurrentLocation(true)
-          .then((value) => _addrController.text = value);
-      latlong = await getLocation().getLatLong();
-      setState(() {
-        _addrController.text;
-      });
-    } else {
-      setState(() {
-        _addrController.text = widget.addr!;
-      });
-    }
-    // _addressController.text = _address.toString();
-  }
+  // void getAddress() async {
+  //   if (widget.addr == null) {
+  //     await getLocation()
+  //         .getCurrentLocation(true)
+  //         .then((value) => _addrController.text = value);
+  //     latlong = await getLocation().getLatLong();
+  //     setState(() {
+  //       _addrController.text;
+  //     });
+  //   } else {
+  //     setState(() {
+  //       _addrController.text = widget.addr!;
+  //     });
+  //   }
+  //   // _addressController.text = _address.toString();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -211,9 +212,9 @@ class _NextDetailPageState extends State<NextDetailPage> {
                               title: widget.title,
                               products: widget.products,
                               snap: widget.snap,
-                              lat: latlong[0],
-                              long: latlong[1],
-                              loc: _addrController.text,
+                              // lat: latlong[0],
+                              // long: latlong[1],
+                              // loc: _addrController.text,
                             ),
                           ),
                         );
