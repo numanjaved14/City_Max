@@ -43,7 +43,8 @@ class _NextDetailPageState extends State<NextDetailPage> {
   void initState() {
     debugPrint(widget.products.toString());
     _timeController.text = formatTimeOfDay(TimeOfDay.now());
-    _addrController.text = widget.addr!;
+    _addrController.text =
+        widget.addr == null ? 'Enter your Address' : widget.addr!;
     // getAddress();
     // TODO: implement initState
     super.initState();
