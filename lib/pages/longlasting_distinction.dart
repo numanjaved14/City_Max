@@ -193,7 +193,7 @@ class _LongLastingDistinctionState extends State<LongLastingDistinction> {
                                             SizedBox(height: 10),
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   'Service at fixed price:\n${dataMap['Residential Villa']} AED',
@@ -227,85 +227,90 @@ class _LongLastingDistinctionState extends State<LongLastingDistinction> {
                               ],
                             ),
                             //Sofas
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (builder) =>
-                                            SofaCleaningScreen(
-                                          imagePath:
-                                              'assets/commercial-disinfection.jpg',
-                                          type: title,
-                                          category: 'Commercial',
+                            Container(
+                              margin: EdgeInsets.only(left: 12),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (builder) =>
+                                              SofaCleaningScreen(
+                                            imagePath:
+                                                'assets/commercial-disinfection.jpg',
+                                            type: title,
+                                            category: 'Commercial',
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                  child: Container(
-                                    width: 180,
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Card(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Center(
-                                              child: FittedBox(
-                                                fit: BoxFit.contain,
-                                                child: CircleAvatar(
-                                                  backgroundColor: Colors.white,
-                                                  radius: 60,
-                                                  backgroundImage: AssetImage(
-                                                      'assets/commercial-disinfection.jpg'),
+                                      );
+                                    },
+                                    child: Container(
+                                      width: 180,
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Card(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Center(
+                                                child: FittedBox(
+                                                  fit: BoxFit.contain,
+                                                  child: CircleAvatar(
+                                                    backgroundColor:
+                                                        Colors.white,
+                                                    radius: 60,
+                                                    backgroundImage: AssetImage(
+                                                        'assets/commercial-disinfection.jpg'),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            SizedBox(height: 10),
-                                            Center(
-                                                child: Text(
-                                              'Commercial',
-                                              textAlign: TextAlign.center,
-                                            )),
-                                            SizedBox(height: 10),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Service at fixed price:\n${dataMap['Commercial']} AED',
-                                                  textAlign: TextAlign.start,
-                                                  style: TextStyle(
-                                                      fontSize: 10,
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ],
-                                            ),
-                                            discountMap['Commercial'] != 0
-                                                ? Text(
-                                                    'Upto ${discountMap['Commercial']} % discount',
+                                              SizedBox(height: 10),
+                                              Center(
+                                                  child: Text(
+                                                'Commercial',
+                                                textAlign: TextAlign.center,
+                                              )),
+                                              SizedBox(height: 10),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Service at fixed price:\n${dataMap['Commercial']} AED',
                                                     textAlign: TextAlign.start,
                                                     style: TextStyle(
-                                                        color: Colors.green,
                                                         fontSize: 10,
+                                                        color: Colors.black,
                                                         fontWeight:
                                                             FontWeight.bold),
-                                                  )
-                                                : SizedBox(),
-                                          ],
+                                                  ),
+                                                ],
+                                              ),
+                                              discountMap['Commercial'] != 0
+                                                  ? Text(
+                                                      'Upto ${discountMap['Commercial']} % discount',
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      style: TextStyle(
+                                                          color: Colors.green,
+                                                          fontSize: 10,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    )
+                                                  : SizedBox(),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                             //Curtain
                           ],

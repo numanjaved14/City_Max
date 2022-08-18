@@ -118,7 +118,7 @@ class _CleaningServicesState extends State<CleaningServices> {
                                             SizedBox(height: 10),
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   'Service is charged hourly \nat AED ${dataMap['HouseKeeping with Materials'].toString()} ',

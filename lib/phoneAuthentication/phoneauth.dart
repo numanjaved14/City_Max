@@ -42,7 +42,8 @@ class _PhoneAuthState extends State<PhoneAuth> {
                           color: Colors.white70
                         ),
                         margin: EdgeInsets.only(left: 20, right: 20, top: 10),
-                        child: Row(
+                        child:
+                         Row(
                           children: [
                             CountryCodePicker(
                                 onChanged: (country) {

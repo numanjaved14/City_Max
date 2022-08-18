@@ -79,7 +79,7 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                       MaterialPageRoute(
                                         builder: (builder) =>
                                             SofaCleaningScreen(
-                                          imagePath: 'assets/Appartment.jpg',
+                                          imagePath: 'assets/aaa.jpeg',
                                           type: title,
                                           category: 'Appartments',
                                         ),
@@ -191,7 +191,7 @@ class _DeepCleaningState extends State<DeepCleaning> {
                                             SizedBox(height: 10),
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   'Service at fixed price:\n${dataMap['Villas']} AED',

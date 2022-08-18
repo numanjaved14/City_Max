@@ -111,10 +111,10 @@ class _ResidentialAreaState extends State<ResidentialArea> {
                                             SizedBox(height: 10),
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  'Service at hourly price\n${dataMap['Appartments']} AED',
+                                                  'Service at fixed price\n${dataMap['Appartments']} AED',
                                                   textAlign: TextAlign.start,
                                                   style: TextStyle(
                                                       fontSize: 10,
@@ -180,10 +180,10 @@ class _ResidentialAreaState extends State<ResidentialArea> {
                                             SizedBox(height: 10),
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  'Service at hourly Price:\n${dataMap['Villas']} AED',
+                                                  'Service at fixed Price:\n${dataMap['Villas']} AED',
                                                   textAlign: TextAlign.start,
                                                   style: TextStyle(
                                                       fontSize: 10,
