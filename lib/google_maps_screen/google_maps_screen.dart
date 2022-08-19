@@ -40,11 +40,18 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
   bool _isLoading = false;
   List latlong = [];
   String location = 'Please move map to A specific location.';
+  TextEditingController _addrController = TextEditingController();
 
   @override
   void initState() {
     getLatLong();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _addrController.dispose();
+    super.dispose();
   }
 
   @override
@@ -89,6 +96,7 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
                           placemarks.first.administrativeArea.toString() +
                               ", " +
                               placemarks.first.street.toString();
+                      _addrController.text = location;
                     });
                   },
                 ),
@@ -113,10 +121,16 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
                             "assets/user_loc.png",
                             width: 25,
                           ),
-                          title: Text(
-                            location,
-                            style: TextStyle(fontSize: 18),
+                          title: TextField(
+                            controller: _addrController,
+                            decoration: InputDecoration(
+                              hintText: 'Select Location',
+                            ),
                           ),
+                          // title: Text(
+                          //   location,
+                          //   style: TextStyle(fontSize: 18),
+                          // ),
                           subtitle: ElevatedButton(
                             child: Text('Pick'),
                             onPressed: () {
@@ -128,7 +142,7 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
                                     serviceHours: widget.serviceHours,
                                     heros: widget.heros,
                                     price: widget.price,
-                                    addr: location,
+                                    addr: _addrController.text,
                                     products: widget.products,
                                     snap: widget.snap,
                                   ),
