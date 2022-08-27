@@ -300,13 +300,15 @@ class _ServiceDetailState extends State<ServiceDetail> {
                                               .data()['discount']
                                               .toString() ==
                                           '0'
-                                  ? double.parse(snapshot.data!.docs[0]
-                                          .data()['price']
-                                          .toString())
+                                  ? (double.parse(snapshot.data!.docs[0].data()['price'].toString()) *
+                                          _heroCount *
+                                          _hourCounter)
                                       .toString()
-                                  : (double.parse(snapshot.data!.docs[0]
-                                              .data()['price']
-                                              .toString()) -
+                                  : ((double.parse(snapshot.data!.docs[0]
+                                                  .data()['price']
+                                                  .toString()) *
+                                              _heroCount *
+                                              _hourCounter) -
                                           double.parse(snapshot.data!.docs[0]
                                               .data()['discount']
                                               .toString()))
