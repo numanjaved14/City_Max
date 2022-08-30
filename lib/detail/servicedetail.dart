@@ -309,9 +309,11 @@ class _ServiceDetailState extends State<ServiceDetail> {
                                                   .toString()) *
                                               _heroCount *
                                               _hourCounter) -
-                                          double.parse(snapshot.data!.docs[0]
-                                              .data()['discount']
-                                              .toString()))
+                                          (double.parse(snapshot.data!.docs[0]
+                                                  .data()['discount']
+                                                  .toString())) *
+                                              _heroCount *
+                                              _hourCounter)
                                       .toString(),
                               // price: widget.price == null
                               //     ? widget.snap['price']
