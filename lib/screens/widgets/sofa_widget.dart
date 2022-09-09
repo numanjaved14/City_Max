@@ -74,10 +74,8 @@ class _ListTileItemState extends State<ListTileItem> {
                   ),
                 ),
                 Text(
-                  
                   _itemCount.toString(),
-                  style: TextStyle(fontSize: 10,color: Colors.black)
-                  ,
+                  style: TextStyle(fontSize: 10, color: Colors.black),
                 ),
                 IconButton(
                   onPressed: () {
@@ -89,7 +87,7 @@ class _ListTileItemState extends State<ListTileItem> {
                           ? double.parse(widget.snap['price'].toString())
                           : double.parse(widget.snap['price'].toString()) -
                               double.parse(widget.snap['discount'].toString()),
-                      type: widget.snap['serviceType'].toString(),
+                      type: widget.snap['servicetype'].toString(),
                       desc: widget.snap['description'].toString(),
                       category: widget.snap['serviceCategory'].toString(),
                       subCategory: widget.snap['serviceSubCategory'].toString(),

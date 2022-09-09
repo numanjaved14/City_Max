@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:intl/intl.dart';
 
-import '../services/geo_locator.dart';
-
 class NextDetailPage extends StatefulWidget {
   String title, subTitle, serviceHours, heros, price;
   String? addr;
@@ -46,7 +44,6 @@ class _NextDetailPageState extends State<NextDetailPage> {
     _addrController.text =
         widget.addr == null ? 'Enter your Address' : widget.addr!;
     // getAddress();
-    // TODO: implement initState
     super.initState();
   }
 

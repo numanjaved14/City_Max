@@ -249,6 +249,8 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
                                 fixedSize: Size(200, 60),
                                 shape: StadiumBorder()),
                             onPressed: () {
+                              debugPrint(
+                                  '${widget.title}, ${widget.subTitle}, ${widget.products}');
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                   builder: (context) => NextDetailPage(

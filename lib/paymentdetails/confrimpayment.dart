@@ -260,8 +260,8 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
                           ? products.add({
                               'price': widget.price,
                               'quantity': '1',
-                              'serviceCategory': widget.subTitle,
-                              'seriveSubCat': '',
+                              'serivceCategory': widget.subTitle,
+                              'serivceSubCat': 'No Subcategory available',
                               'serviceType': widget.title,
                               'uuid': '',
                             })
