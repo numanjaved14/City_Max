@@ -2,7 +2,13 @@
     package="com.example.city_max">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-   <application
+    <queries>
+    <intent>
+      <action android:name="android.intent.action.SEND" />
+      <data android:mimeType="assets/splash.png" />
+      </intent>
+    </queries>
+    <application
         android:label="city_max"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

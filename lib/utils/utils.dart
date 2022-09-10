@@ -1,23 +1,35 @@
-
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:url_launcher/url_launcher.dart' as UL;
 
 //Image Picker Code
 pickImage(ImageSource source) async {
   final ImagePicker imagePicker = ImagePicker();
-  XFile ? file = await imagePicker.pickImage(source: source);
+  XFile? file = await imagePicker.pickImage(source: source);
 
-  if(file != null){
+  if (file != null) {
     return await file.readAsBytes();
   }
   print('No Image Selected');
 }
 
-
 /// SnakBar Code
-showSnakBar(String contexts,BuildContext context){
- ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(contexts)));
+showSnakBar(String contexts, BuildContext context) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(contexts)));
+}
+
+// Send e-mail
+class Utils {
+  static Future<void> sendEmail({
+    required String email,
+    required String subject,
+    required String body,
+  }) async {
+    String mail = "mailto:$email?subject=$subject&body=${Uri.encodeFull(body)}";
+    if (await UL.canLaunch(mail)) {
+      await UL.launch(mail);
+    } else {
+      throw Exception("Unable to open the email");
+    }
+  }
 }

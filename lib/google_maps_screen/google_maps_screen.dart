@@ -41,6 +41,10 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
   List latlong = [];
   String location = 'Please move map to A specific location.';
   TextEditingController _addrController = TextEditingController();
+  TextEditingController _appartmentController = TextEditingController();
+  TextEditingController _buildingController = TextEditingController();
+  TextEditingController _streetController = TextEditingController();
+  TextEditingController _areaController = TextEditingController();
 
   @override
   void initState() {
@@ -56,10 +60,6 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _appartmentController = TextEditingController();
-    TextEditingController _buildingController = TextEditingController();
-    TextEditingController _streetController = TextEditingController();
-    TextEditingController _areaController = TextEditingController();
     LatLng startLocation = _isLoading
         ? const LatLng(25.276987, 55.296249)
         : LatLng(latlong[0], latlong[1]);
@@ -249,8 +249,6 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
                                 fixedSize: Size(200, 60),
                                 shape: StadiumBorder()),
                             onPressed: () {
-                              debugPrint(
-                                  '${widget.title}, ${widget.subTitle}, ${widget.products}');
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                   builder: (context) => NextDetailPage(

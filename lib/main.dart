@@ -1,5 +1,3 @@
-import 'package:city_max/google_maps_screen/google_map_test.dart';
-import 'package:city_max/google_maps_screen/google_maps_screen.dart';
 import 'package:city_max/main/mainscreen.dart';
 import 'package:city_max/providers/cart.dart';
 import 'package:firebase_auth/firebase_auth.dart';

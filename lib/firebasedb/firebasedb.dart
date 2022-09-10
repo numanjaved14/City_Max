@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:uuid/uuid.dart';
 
 import '../providers/cart.dart';
+import '../utils/utils.dart';
 
 class DatabaseMethods {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
@@ -120,15 +121,26 @@ class DatabaseMethods {
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get();
 
-      String emailStat = await SendEmail().sendEmail(
-        email: userSnap.data()!['email'],
-        name: userSnap.data()!['fullName'],
-        subject: 'New Order!',
-        message:
-            'Order id: $uuid, \n Customer id: ${userSnap.data()!['uid']}, \n Customer number: ${userSnap.data()!['phoneNumber']}',
-      );
+      // String emailStat = await SendEmail().sendEmail(
+      //   email: userSnap.data()!['email'],
+      //   name: userSnap.data()!['fullName'],
+      //   subject: 'New Order!',
+      //   message:
+      //       'Order id: $uuid, \n Customer id: ${userSnap.data()!['uid']}, \n Customer number: ${userSnap.data()!['phoneNumber']}',
+      // );
 
-      debugPrint(emailStat);
+      // debugPrint(emailStat);
+
+      try {
+        await Utils.sendEmail(
+          body:
+              'Order id: $uuid, \n Customer id: ${userSnap.data()!['uid']}, \n Customer number: ${userSnap.data()!['phoneNumber']}',
+          email: "citymax718@gmail.com",
+          subject: "New Order!",
+        );
+      } catch (e) {
+        debugPrint("sendEmail failed ${e}");
+      }
 
       debugPrint(res);
     } on FirebaseException catch (e) {
