@@ -134,7 +134,7 @@ class DatabaseMethods {
       try {
         await Utils.sendEmail(
           body:
-              'Order id: $uuid, \n Customer id: ${userSnap.data()!['uid']}, \n Customer number: ${userSnap.data()!['phoneNumber']}',
+              'Dear City Max Technical Service,\n There is a new job available on your dashboard, Hurry up and check it!\n Job ID: $uuid\nCustomer Full Name: ${userSnap.data()!['fullName']}\nCustomer number: ${userSnap.data()!['phoneNumber']}\nServices:\n$products\nExpected Date: $date\nExpected Time: $time\nTotal Amount: $price\nPayment Method: $payVia\nAddress: $loc',
           email: "citymax718@gmail.com",
           subject: "New Order!",
         );

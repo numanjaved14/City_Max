@@ -503,7 +503,7 @@ class _ConfrimPaymentState extends State<ConfrimPayment> {
 
   showAlertDialog(BuildContext context) {
     // Create button
-    Widget okButton = FlatButton(
+    Widget okButton = ElevatedButton(
       child: Text("OK"),
       onPressed: () {
         Navigator.pushAndRemoveUntil(

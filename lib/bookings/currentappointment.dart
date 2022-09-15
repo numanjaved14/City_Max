@@ -103,7 +103,8 @@ class _CurrentAppointmentsState extends State<CurrentAppointments> {
                                                           Text('Are you sure?'),
                                                           SizedBox(
                                                             width: 320.0,
-                                                            child: RaisedButton(
+                                                            child:
+                                                                ElevatedButton(
                                                               onPressed:
                                                                   () async {
                                                                 await DatabaseMethods()
@@ -122,8 +123,9 @@ class _CurrentAppointmentsState extends State<CurrentAppointments> {
                                                                     color: Colors
                                                                         .white),
                                                               ),
-                                                              color:
-                                                                  Colors.blue,
+
+                                                              // color:
+                                                              //     Colors.blue,
                                                             ),
                                                           ),
                                                         ],

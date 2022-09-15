@@ -115,7 +115,7 @@ class _PastApointmentState extends State<PastApointment> {
                                                                       width:
                                                                           320.0,
                                                                       child:
-                                                                          RaisedButton(
+                                                                          ElevatedButton(
                                                                         onPressed:
                                                                             () async {
                                                                           await DatabaseMethods()
@@ -133,8 +133,8 @@ class _PastApointmentState extends State<PastApointment> {
                                                                           style:
                                                                               TextStyle(color: Colors.white),
                                                                         ),
-                                                                        color: Colors
-                                                                            .blue,
+                                                                        // color: Colors
+                                                                        //     .blue,
                                                                       ),
                                                                     ),
                                                                   ],
